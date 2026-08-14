@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clínica Médica Vida & Saúde</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0284c7; /* Azul Médico */
+            --primary-dark: #0369a1;
+            --secondary: #0f766e; /* Verde Teal */
+            --bg-light: #f0f9ff;
+            --text-dark: #1e293b;
+            --text-light: #64748b;
+            --white: #ffffff;
+            --danger: #ef4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--white);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* Navbar */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .btn-agendar {
+            background-color: var(--primary);
+            color: var(--white) !important;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: 600;
+            box-shadow: 0 4px 6px rgba(2, 132, 199, 0.3);
+        }
+
+        .btn-agendar:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        /* Seções Gerais */
+        section {
+            padding: 80px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 32px;
+            color: var(--primary-dark);
+            margin-bottom: 10px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-light);
+            margin-bottom: 50px;
+            font-size: 16px;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, rgba(2,132,199,0.9), rgba(15,118,110,0.9)), url('https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80') center/cover;
+            color: var(--white);
+            padding: 150px 20px 100px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            max-width: 600px;
+            margin: 0 auto 30px;
+            opacity: 0.9;
+        }
+
+        .hero .btn {
+            background-color: var(--white);
+            color: var(--primary);
+            padding: 15px 30px;
+            font-size: 18px;
+            font-weight: 700;
+            border-radius: 30px;
+            text-decoration: none;
+            display: inline-block;
+            transition: 0.3s;
+        }
+
+        .hero .btn:hover {
+            background-color: var(--bg-light);
+            transform: scale(1.05);
+        }
+
+        /* Serviços */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: var(--white);
+            border: 1px solid #e2e8f0;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: 0 10px 20px rgba(2, 132, 199, 0.1);
+        }
+
+        .service-icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+
+        .service-card h3 {
+            color: var(--primary-dark);
+            margin-bottom: 10px;
+        }
+
+        /* Ambientes / Estrutura */
+        .ambientes {
+            background-color: var(--bg-light);
+        }
+
+        .ambientes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .ambiente-card {
+            background: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .ambiente-img {
+            width: 100%;
+            height: 200px;
+            background-color: #cbd5e1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 50px;
+            color: var(--white);
+        }
+
+        .ambiente-card.consultorio .ambiente-img { background: #38bdf8; }
+        .ambiente-card.exames .ambiente-img { background: #34d399; }
+        .ambiente-card.triagem .ambiente-img { background: #fbbf24; }
+
+        .ambiente-info {
+            padding: 20px;
+        }
+
+        .ambiente-info h3 {
+            color: var(--text-dark);
+            margin-bottom: 5px;
+        }
+        
+        .ambiente-tag {
+            display: inline-block;
+            background: var(--bg-light);
+            color: var(--primary);
+            font-size: 12px;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        /* Área do Cliente / Agendamento */
+        .agendamento {
+            display: flex;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .agendamento-info {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .agendamento-form {
+            flex: 1;
+            min-width: 300px;
+            background: var(--white);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border-top: 5px solid var(--primary);
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 5px;
+            outline: none;
+            font-family: inherit;
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            border-color: var(--primary);
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 15px;
+            background-color: var(--primary);
+            color: var(--white);
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn-submit:hover {
+            background-color: var(--primary-dark);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--text-dark);
+            color: var(--white);
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto 30px;
+            text-align: left;
+        }
+
+        .footer-col h4 {
+            margin-bottom: 15px;
+            color: #38bdf8;
+        }
+
+        .footer-col p {
+            color: #94a3b8;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hero h1 { font-size: 36px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navegação -->
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo">🏥 Clínica Vida & Saúde</a>
+            <ul class="nav-links">
+                <li><a href="#inicio">Início</a></li>
+                <li><a href="#servicos">Serviços</a></li>
+                <li><a href="#ambientes">Nossa Estrutura</a></li>
+                <li><a href="#recepcao">Recepção</a></li>
+                <li><a href="#agendamento" class="btn-agendar">Área do Paciente</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Banner Principal -->
+    <section id="inicio" class="hero">
+        <div class="container">
+            <h1>Cuidando de você e da sua família</h1>
+            <p>Atendimento humanizado, estrutura moderna e especialistas qualificados prontos para cuidar da sua saúde com excelência.</p>
+            <a href="#agendamento" class="btn">Agendar Consulta Agora</a>
+        </div>
+    </section>
+
+    <!-- Seção de Serviços -->
+    <section id="servicos">
+        <div class="container">
+            <h2 class="section-title">Serviços e Procedimentos</h2>
+            <p class="section-subtitle">Oferecemos uma ampla gama de serviços médicos no mesmo local.</p>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">🩺</div>
+                    <h3>Consultas Médicas</h3>
+                    <p>Atendimento em diversas áreas: Clínica Geral, Cardiologia, Pediatria e Ortopedia.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🔬</div>
+                    <h3>Exames Laboratoriais</h3>
+                    <p>Coleta de sangue, urina e fluidos corporais com resultados rápidos e precisos.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🩻</div>
+                    <h3>Diagnóstico por Imagem</h3>
+                    <p>Raio-X digital, Ultrassonografia e Tomografia realizados em salas equipadas.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🩹</div>
+                    <h3>Pequenos Procedimentos</h3>
+                    <p>Curativos, retiradas de pontos, suturas e administração de medicamentos.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção de Ambientes / Consultórios -->
+    <section id="ambientes" class="ambientes">
+        <div class="container">
+            <h2 class="section-title">Nossa Estrutura Clínica</h2>
+            <p class="section-subtitle">Conheça nossos ambientes, salas e consultórios preparados para seu conforto.</p>
+
+            <div class="ambientes-grid">
+                <div class="ambiente-card consultorio">
+                    <div class="ambiente-img">👨‍⚕️</div>
+                    <div class="ambiente-info">
+                        <span class="ambiente-tag">Id_Ambiente: 01</span>
+                        <h3>Consultórios Médicos</h3>
+                        <p><strong>Tipo:</strong> Atendimento Clínico</p>
+                        <p>Salas climatizadas e equipadas para garantir a privacidade durante as consultas entre médico e paciente.</p>
+                    </div>
+                </div>
+                <div class="ambiente-card exames">
+                    <div class="ambiente-img">🧪</div>
+                    <div class="ambiente-info">
+                        <span class="ambiente-tag">Id_Ambiente: 02</span>
+                        <h3>Salas de Exames</h3>
+                        <p><strong>Tipo:</strong> Procedimentos e Coleta</p>
+                        <p>Ambientes esterilizados destinados à coleta laboratorial e realização de exames de imagem e diagnóstico.</p>
+                    </div>
+                </div>
+                <div class="ambiente-card triagem">
+                    <div class="ambiente-img">📋</div>
+                    <div class="ambiente-info">
+                        <span class="ambiente-tag">Id_Ambiente: 03</span>
+                        <h3>Sala de Triagem</h3>
+                        <p><strong>Tipo:</strong> Avaliação Inicial</p>
+                        <p>Local onde nossos enfermeiros realizam a medição de pressão, peso e temperatura antes da consulta.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção de Recepção / Área do Cliente -->
+    <section id="agendamento">
+        <div class="container">
+            <h2 class="section-title">Portal do Paciente</h2>
+            <p class="section-subtitle">Faça seu pré-agendamento. Nossa recepção entrará em contato para confirmar.</p>
+
+            <div class="agendamento">
+                <div class="agendamento-info" id="recepcao">
+                    <h3>Atendimento e Recepção</h3>
+                    <p style="margin-top: 15px; margin-bottom: 20px; color: var(--text-light);">
+                        Nossa equipe de recepcionistas está pronta para agilizar seu cadastro, abrir sua ficha médica e encaminhá-lo ao consultório correto.
+                    </p>
+                    <ul style="list-style: none; margin-bottom: 20px;">
+                        <li style="margin-bottom: 10px;">🕒 <strong>Horário de Funcionamento:</strong><br>Seg a Sex: 07h às 19h | Sáb: 08h às 12h</li>
+                        <li style="margin-bottom: 10px;">📞 <strong>Central de Marcação:</strong><br>(11) 4000-0000</li>
+                        <li style="margin-bottom: 10px;">📍 <strong>Localidade:</strong><br>Bloco Principal, Térreo</li>
+                    </ul>
+                    <div style="background: var(--bg-light); padding: 15px; border-radius: 8px; border-left: 4px solid var(--secondary);">
+                        <p style="font-size: 14px; margin: 0;"><strong>Aviso:</strong> Para exames laboratoriais, verifique a necessidade de jejum na aba de serviços.</p>
+                    </div>
+                </div>
+
+                <div class="agendamento-form">
+                    <h3 style="margin-bottom: 20px; color: var(--primary-dark);">Nova Consulta (Cadastro de Cliente)</h3>
+                    <form id="formAgendamento">
+                        <div class="form-group">
+                            <label for="nome">Nome Completo do Paciente *</label>
+                            <input type="text" id="nome" required placeholder="Ex: João da Silva">
+                        </div>
+                        <div style="display: flex; gap: 15px;">
+                            <div class="form-group" style="flex: 1;">
+                                <label for="cpf">CPF *</label>
+                                <input type="text" id="cpf" required placeholder="000.000.000-00">
+                            </div>
+                            <div class="form-group" style="flex: 1;">
+                                <label for="nascimento">Data de Nascimento</label>
+                                <input type="date" id="nascimento" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="telefone">Telefone / WhatsApp</label>
+                            <input type="tel" id="telefone" required placeholder="(00) 90000-0000">
+                        </div>
+                        <div class="form-group">
+                            <label for="servico">Serviço Solicitado / Área *</label>
+                            <select id="servico" required>
+                                <option value="">Selecione uma especialidade...</option>
+                                <option value="clinico">Consulta - Clínico Geral</option>
+                                <option value="cardiologia">Consulta - Cardiologia</option>
+                                <option value="exames">Exames Laboratoriais</option>
+                                <option value="raiox">Raio-X / Imagem</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn-submit">Solicitar Agendamento</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rodapé -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>🏥 Clínica Vida & Saúde</h4>
+                <p>O seu sistema completo de saúde e bem-estar.</p>
+                <p>© 2024 Todos os direitos reservados.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Nossos Serviços</h4>
+                <p>Consultas Médicas</p>
+                <p>Exames Laboratoriais</p>
+                <p>Pronto Atendimento</p>
+            </div>
+            <div class="footer-col">
+                <h4>Contato da Recepção</h4>
+                <p>Email: contato@clinicavida.com.br</p>
+                <p>Telefone: (11) 4000-0000</p>
+                <p>Endereço: Av. da Saúde, 123 - Centro</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simulando a ação do banco de dados ao clicar em agendar
+        document.getElementById('formAgendamento').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Pega os dados simulando a entidade Clientes
+            const nome = document.getElementById('nome').value;
+            const servico = document.getElementById('servico').options[document.getElementById('servico').selectedIndex].text;
+            
+            alert(`✅ Cadastro e Solicitação realizados com sucesso!
+
+Paciente: ${nome}
+Serviço/Área: ${servico}
+
+Nossa recepção criará o seu Registro (ID_Cliente) e confirmará o Ambiente (Consultório) em breve via WhatsApp.`);
+            
+            this.reset(); // Limpa o formulário
+        });
+    </script>
+</body>
+</html>
