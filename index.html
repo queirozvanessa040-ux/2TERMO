@@ -1,535 +1,751 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clínica Médica Vida & Saúde</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>SmartCoffee | Sistema Integrado de Cafeteria</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        coffee: {
+                            50: '#fdf8f5',
+                            100: '#f7e8de',
+                            500: '#8b5e3c',
+                            600: '#6f4e37',
+                            700: '#533a29',
+                            800: '#38271c',
+                            900: '#1e140d',
+                        },
+                        amber: {
+                            500: '#d97706',
+                            600: '#b45309'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        :root {
-            --primary: #0284c7; /* Azul Médico */
-            --primary-dark: #0369a1;
-            --secondary: #0f766e; /* Verde Teal */
-            --bg-light: #f0f9ff;
-            --text-dark: #1e293b;
-            --text-light: #64748b;
-            --white: #ffffff;
-            --danger: #ef4444;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-            scroll-behavior: smooth;
-        }
-
-        body {
-            background-color: var(--white);
-            color: var(--text-dark);
-            line-height: 1.6;
-        }
-
-        /* Navbar */
-        header {
-            background-color: var(--white);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 20px;
-        }
-
-        .logo {
-            font-size: 24px;
-            font-weight: 700;
-            color: var(--primary);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 20px;
-            list-style: none;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text-dark);
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary);
-        }
-
-        .btn-agendar {
-            background-color: var(--primary);
-            color: var(--white) !important;
-            padding: 10px 20px;
-            border-radius: 25px;
-            font-weight: 600;
-            box-shadow: 0 4px 6px rgba(2, 132, 199, 0.3);
-        }
-
-        .btn-agendar:hover {
-            background-color: var(--primary-dark);
-            transform: translateY(-2px);
-        }
-
-        /* Seções Gerais */
-        section {
-            padding: 80px 20px;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 32px;
-            color: var(--primary-dark);
-            margin-bottom: 10px;
-        }
-
-        .section-subtitle {
-            text-align: center;
-            color: var(--text-light);
-            margin-bottom: 50px;
-            font-size: 16px;
-        }
-
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, rgba(2,132,199,0.9), rgba(15,118,110,0.9)), url('https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80') center/cover;
-            color: var(--white);
-            padding: 150px 20px 100px;
-            text-align: center;
-        }
-
-        .hero h1 {
-            font-size: 48px;
-            margin-bottom: 20px;
-        }
-
-        .hero p {
-            font-size: 18px;
-            max-width: 600px;
-            margin: 0 auto 30px;
-            opacity: 0.9;
-        }
-
-        .hero .btn {
-            background-color: var(--white);
-            color: var(--primary);
-            padding: 15px 30px;
-            font-size: 18px;
-            font-weight: 700;
-            border-radius: 30px;
-            text-decoration: none;
-            display: inline-block;
-            transition: 0.3s;
-        }
-
-        .hero .btn:hover {
-            background-color: var(--bg-light);
-            transform: scale(1.05);
-        }
-
-        /* Serviços */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-        }
-
-        .service-card {
-            background: var(--white);
-            border: 1px solid #e2e8f0;
-            padding: 30px;
-            border-radius: 10px;
-            text-align: center;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            transition: 0.3s;
-        }
-
-        .service-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--primary);
-            box-shadow: 0 10px 20px rgba(2, 132, 199, 0.1);
-        }
-
-        .service-icon {
-            font-size: 40px;
-            margin-bottom: 15px;
-        }
-
-        .service-card h3 {
-            color: var(--primary-dark);
-            margin-bottom: 10px;
-        }
-
-        /* Ambientes / Estrutura */
-        .ambientes {
-            background-color: var(--bg-light);
-        }
-
-        .ambientes-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-        }
-
-        .ambiente-card {
-            background: var(--white);
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-        }
-
-        .ambiente-img {
-            width: 100%;
-            height: 200px;
-            background-color: #cbd5e1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 50px;
-            color: var(--white);
-        }
-
-        .ambiente-card.consultorio .ambiente-img { background: #38bdf8; }
-        .ambiente-card.exames .ambiente-img { background: #34d399; }
-        .ambiente-card.triagem .ambiente-img { background: #fbbf24; }
-
-        .ambiente-info {
-            padding: 20px;
-        }
-
-        .ambiente-info h3 {
-            color: var(--text-dark);
-            margin-bottom: 5px;
-        }
-        
-        .ambiente-tag {
-            display: inline-block;
-            background: var(--bg-light);
-            color: var(--primary);
-            font-size: 12px;
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-weight: 600;
-            margin-bottom: 10px;
-        }
-
-        /* Área do Cliente / Agendamento */
-        .agendamento {
-            display: flex;
-            gap: 40px;
-            flex-wrap: wrap;
-        }
-
-        .agendamento-info {
-            flex: 1;
-            min-width: 300px;
-        }
-
-        .agendamento-form {
-            flex: 1;
-            min-width: 300px;
-            background: var(--white);
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            border-top: 5px solid var(--primary);
-        }
-
-        .form-group {
-            margin-bottom: 15px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: 500;
-            color: var(--text-dark);
-        }
-
-        .form-group input, .form-group select {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #cbd5e1;
-            border-radius: 5px;
-            outline: none;
-            font-family: inherit;
-        }
-
-        .form-group input:focus, .form-group select:focus {
-            border-color: var(--primary);
-        }
-
-        .btn-submit {
-            width: 100%;
-            padding: 15px;
-            background-color: var(--primary);
-            color: var(--white);
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .btn-submit:hover {
-            background-color: var(--primary-dark);
-        }
-
-        /* Footer */
-        footer {
-            background-color: var(--text-dark);
-            color: var(--white);
-            padding: 40px 20px;
-            text-align: center;
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 30px;
-            max-width: 1200px;
-            margin: 0 auto 30px;
-            text-align: left;
-        }
-
-        .footer-col h4 {
-            margin-bottom: 15px;
-            color: #38bdf8;
-        }
-
-        .footer-col p {
-            color: #94a3b8;
-            font-size: 14px;
-            margin-bottom: 10px;
-        }
-
-        @media (max-width: 768px) {
-            .nav-links { display: none; }
-            .hero h1 { font-size: 36px; }
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: rgba(0,0,0,0.2); }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #6f4e37; border-radius: 10px; }
+        .glass-panel {
+            background: rgba(28, 25, 23, 0.85);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(217, 119, 6, 0.15);
         }
     </style>
 </head>
-<body>
+<body class="bg-stone-950 text-stone-100 font-sans antialiased min-h-screen flex flex-col selection:bg-amber-500 selection:text-stone-950">
 
-    <!-- Navegação -->
-    <header>
-        <div class="nav-container">
-            <a href="#" class="logo">🏥 Clínica Vida & Saúde</a>
-            <ul class="nav-links">
-                <li><a href="#inicio">Início</a></li>
-                <li><a href="#servicos">Serviços</a></li>
-                <li><a href="#ambientes">Nossa Estrutura</a></li>
-                <li><a href="#recepcao">Recepção</a></li>
-                <li><a href="#agendamento" class="btn-agendar">Área do Paciente</a></li>
-            </ul>
+    <div id="toastContainer" class="fixed top-24 right-4 z-50 space-y-2 pointer-events-none"></div>
+
+    <header class="sticky top-0 z-40 bg-stone-900/90 backdrop-blur-md border-b border-stone-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-amber-600 to-coffee-500 flex items-center justify-center text-white shadow-lg shadow-amber-900/30 group-hover:scale-105 transition-transform">
+                    <i class="fa-solid fa-mug-hot text-xl"></i>
+                </div>
+                <div>
+                    <span class="text-xl font-black tracking-tight bg-gradient-to-r from-amber-400 via-amber-200 to-stone-100 bg-clip-text text-transparent">SmartCoffee</span>
+                    <span class="block text-[10px] text-stone-400 font-bold uppercase tracking-widest">Plataforma Integrada</span>
+                </div>
+            </a>
+
+            <nav class="hidden md:flex items-center gap-8 text-sm font-semibold text-stone-300">
+                <button onclick="switchTab('cardapio')" class="nav-tab active hover:text-amber-400 transition py-2 border-b-2 border-transparent" id="tab-cardapio"><i class="fa-solid fa-utensils mr-2"></i>Cardápio</button>
+                <button onclick="switchTab('pedidos')" class="nav-tab hover:text-amber-400 transition py-2 border-b-2 border-transparent" id="tab-pedidos"><i class="fa-solid fa-receipt mr-2"></i>Pedidos & Delivery</button>
+                <button onclick="switchTab('fidelidade')" class="nav-tab hover:text-amber-400 transition py-2 border-b-2 border-transparent" id="tab-fidelidade"><i class="fa-solid fa-crown mr-2 text-amber-400"></i>Fidelidade</button>
+                <button onclick="switchTab('admin')" class="nav-tab hover:text-amber-400 transition py-2 border-b-2 border-transparent" id="tab-admin"><i class="fa-solid fa-warehouse mr-2"></i>Estoque & B2B</button>
+            </nav>
+
+            <div class="flex items-center gap-3">
+                <button onclick="switchTab('fidelidade')" class="hidden sm:flex items-center gap-2.5 bg-stone-800/80 hover:bg-stone-800 px-3 py-1.5 rounded-full border border-stone-700/80 transition text-left">
+                    <div class="w-7 h-7 rounded-full bg-amber-500 text-stone-950 font-black text-xs flex items-center justify-center">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+                    <div class="text-xs">
+                        <p class="font-bold text-white leading-tight" id="lblNavClienteNome">Mariana Silva</p>
+                        <p class="text-amber-400 font-mono text-[10px]" id="lblNavClientePontos">520 Pts</p>
+                    </div>
+                </button>
+
+                <button onclick="toggleCarrinhoDrawer()" class="relative bg-amber-500 hover:bg-amber-400 text-stone-950 font-black px-4 py-2.5 rounded-xl flex items-center gap-2 transition shadow-lg shadow-amber-500/20 active:scale-95">
+                    <i class="fa-solid fa-bag-shopping text-base"></i>
+                    <span class="hidden sm:inline text-xs uppercase tracking-wider">Carrinho</span>
+                    <span id="cartBadge" class="bg-stone-950 text-amber-400 text-xs px-2 py-0.5 rounded-full font-extrabold font-mono">0</span>
+                </button>
+            </div>
         </div>
     </header>
 
-    <!-- Banner Principal -->
-    <section id="inicio" class="hero">
-        <div class="container">
-            <h1>Cuidando de você e da sua família</h1>
-            <p>Atendimento humanizado, estrutura moderna e especialistas qualificados prontos para cuidar da sua saúde com excelência.</p>
-            <a href="#agendamento" class="btn">Agendar Consulta Agora</a>
-        </div>
-    </section>
+    <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
 
-    <!-- Seção de Serviços -->
-    <section id="servicos">
-        <div class="container">
-            <h2 class="section-title">Serviços e Procedimentos</h2>
-            <p class="section-subtitle">Oferecemos uma ampla gama de serviços médicos no mesmo local.</p>
+        <section id="sec-cardapio" class="tab-content space-y-8">
             
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">🩺</div>
-                    <h3>Consultas Médicas</h3>
-                    <p>Atendimento em diversas áreas: Clínica Geral, Cardiologia, Pediatria e Ortopedia.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">🔬</div>
-                    <h3>Exames Laboratoriais</h3>
-                    <p>Coleta de sangue, urina e fluidos corporais com resultados rápidos e precisos.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">🩻</div>
-                    <h3>Diagnóstico por Imagem</h3>
-                    <p>Raio-X digital, Ultrassonografia e Tomografia realizados em salas equipadas.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">🩹</div>
-                    <h3>Pequenos Procedimentos</h3>
-                    <p>Curativos, retiradas de pontos, suturas e administração de medicamentos.</p>
+            <div class="relative rounded-3xl bg-gradient-to-r from-stone-900 via-stone-900 to-coffee-900 border border-stone-800 p-8 sm:p-12 overflow-hidden shadow-2xl">
+                <div class="absolute right-0 top-0 bottom-0 w-1/2 bg-[radial-gradient(#d97706_1px,transparent_1px)] [background-size:20px_20px] opacity-15 hidden lg:block"></div>
+                <div class="relative z-10 max-w-2xl space-y-4">
+                    <span class="inline-flex items-center gap-2 bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-widest">
+                        <i class="fa-solid fa-bolt"></i> Preparo Inteligente em Salão e Delivery
+                    </span>
+                    <h1 class="text-3xl sm:text-5xl font-black text-white leading-tight">A melhor experiência em café especial.</h1>
+                    <p class="text-stone-400 text-sm sm:text-base">Monte o seu pedido, selecione o ambiente de atendimento e acompanhe a preparação em tempo real pelo Barista ou Cozinha.</p>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- Seção de Ambientes / Consultórios -->
-    <section id="ambientes" class="ambientes">
-        <div class="container">
-            <h2 class="section-title">Nossa Estrutura Clínica</h2>
-            <p class="section-subtitle">Conheça nossos ambientes, salas e consultórios preparados para seu conforto.</p>
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-stone-900/60 p-4 rounded-2xl border border-stone-800/80">
+                <div class="relative flex-1 max-w-md">
+                    <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-stone-500 text-sm"></i>
+                    <input type="text" id="inputBusca" oninput="filtrarProdutos()" placeholder="Buscar café, croissant, bebida gelada..." class="w-full bg-stone-950 border border-stone-800 rounded-xl pl-10 pr-4 py-2.5 text-sm text-white placeholder-stone-500 focus:outline-none focus:border-amber-500">
+                </div>
 
-            <div class="ambientes-grid">
-                <div class="ambiente-card consultorio">
-                    <div class="ambiente-img">👨‍⚕️</div>
-                    <div class="ambiente-info">
-                        <span class="ambiente-tag">Id_Ambiente: 01</span>
-                        <h3>Consultórios Médicos</h3>
-                        <p><strong>Tipo:</strong> Atendimento Clínico</p>
-                        <p>Salas climatizadas e equipadas para garantir a privacidade durante as consultas entre médico e paciente.</p>
+                <div class="flex flex-wrap gap-2" id="containerCategorias">
                     </div>
-                </div>
-                <div class="ambiente-card exames">
-                    <div class="ambiente-img">🧪</div>
-                    <div class="ambiente-info">
-                        <span class="ambiente-tag">Id_Ambiente: 02</span>
-                        <h3>Salas de Exames</h3>
-                        <p><strong>Tipo:</strong> Procedimentos e Coleta</p>
-                        <p>Ambientes esterilizados destinados à coleta laboratorial e realização de exames de imagem e diagnóstico.</p>
-                    </div>
-                </div>
-                <div class="ambiente-card triagem">
-                    <div class="ambiente-img">📋</div>
-                    <div class="ambiente-info">
-                        <span class="ambiente-tag">Id_Ambiente: 03</span>
-                        <h3>Sala de Triagem</h3>
-                        <p><strong>Tipo:</strong> Avaliação Inicial</p>
-                        <p>Local onde nossos enfermeiros realizam a medição de pressão, peso e temperatura antes da consulta.</p>
-                    </div>
-                </div>
             </div>
-        </div>
-    </section>
 
-    <!-- Seção de Recepção / Área do Cliente -->
-    <section id="agendamento">
-        <div class="container">
-            <h2 class="section-title">Portal do Paciente</h2>
-            <p class="section-subtitle">Faça seu pré-agendamento. Nossa recepção entrará em contato para confirmar.</p>
-
-            <div class="agendamento">
-                <div class="agendamento-info" id="recepcao">
-                    <h3>Atendimento e Recepção</h3>
-                    <p style="margin-top: 15px; margin-bottom: 20px; color: var(--text-light);">
-                        Nossa equipe de recepcionistas está pronta para agilizar seu cadastro, abrir sua ficha médica e encaminhá-lo ao consultório correto.
-                    </p>
-                    <ul style="list-style: none; margin-bottom: 20px;">
-                        <li style="margin-bottom: 10px;">🕒 <strong>Horário de Funcionamento:</strong><br>Seg a Sex: 07h às 19h | Sáb: 08h às 12h</li>
-                        <li style="margin-bottom: 10px;">📞 <strong>Central de Marcação:</strong><br>(11) 4000-0000</li>
-                        <li style="margin-bottom: 10px;">📍 <strong>Localidade:</strong><br>Bloco Principal, Térreo</li>
-                    </ul>
-                    <div style="background: var(--bg-light); padding: 15px; border-radius: 8px; border-left: 4px solid var(--secondary);">
-                        <p style="font-size: 14px; margin: 0;"><strong>Aviso:</strong> Para exames laboratoriais, verifique a necessidade de jejum na aba de serviços.</p>
-                    </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="gridProdutos">
                 </div>
+        </section>
 
-                <div class="agendamento-form">
-                    <h3 style="margin-bottom: 20px; color: var(--primary-dark);">Nova Consulta (Cadastro de Cliente)</h3>
-                    <form id="formAgendamento">
-                        <div class="form-group">
-                            <label for="nome">Nome Completo do Paciente *</label>
-                            <input type="text" id="nome" required placeholder="Ex: João da Silva">
+
+        <section id="sec-pedidos" class="tab-content hidden space-y-8">
+            <div class="flex items-center justify-between border-b border-stone-800 pb-4">
+                <div>
+                    <h2 class="text-2xl font-black text-white">Central de Pedidos Ativos</h2>
+                    <p class="text-xs text-stone-400">Acompanhamento do preparo, pagamento e entrega</p>
+                </div>
+                <span class="text-xs bg-amber-500/10 border border-amber-500/30 text-amber-400 px-3 py-1 rounded-full font-bold">
+                    <i class="fa-solid fa-sync text-[10px] mr-1 animate-spin"></i> Atualização em Tempo Real
+                </span>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6" id="containerPedidos">
+                </div>
+        </section>
+
+
+        <section id="sec-fidelidade" class="tab-content hidden space-y-8">
+            <div class="bg-stone-900 border border-stone-800 rounded-3xl p-6 sm:p-8 space-y-6">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-stone-800 pb-6">
+                    <div class="flex items-center gap-4">
+                        <div class="w-16 h-16 bg-amber-500/10 border border-amber-500/30 text-amber-400 rounded-2xl flex items-center justify-center text-2xl font-black">
+                            <i class="fa-solid fa-crown"></i>
                         </div>
-                        <div style="display: flex; gap: 15px;">
-                            <div class="form-group" style="flex: 1;">
-                                <label for="cpf">CPF *</label>
-                                <input type="text" id="cpf" required placeholder="000.000.000-00">
+                        <div>
+                            <div class="flex items-center gap-2">
+                                <h2 class="text-2xl font-black text-white" id="profileNome">Mariana Silva</h2>
+                                <span class="bg-amber-500/20 text-amber-300 text-[10px] font-bold px-2.5 py-0.5 rounded-full border border-amber-500/30 uppercase" id="profileNivel">Nível Gold</span>
                             </div>
-                            <div class="form-group" style="flex: 1;">
-                                <label for="nascimento">Data de Nascimento</label>
-                                <input type="date" id="nascimento" required>
-                            </div>
+                            <p class="text-xs text-stone-400" id="profileContato">CPF: 123.456.789-00 • email@exemplo.com</p>
                         </div>
-                        <div class="form-group">
-                            <label for="telefone">Telefone / WhatsApp</label>
-                            <input type="tel" id="telefone" required placeholder="(00) 90000-0000">
-                        </div>
-                        <div class="form-group">
-                            <label for="servico">Serviço Solicitado / Área *</label>
-                            <select id="servico" required>
-                                <option value="">Selecione uma especialidade...</option>
-                                <option value="clinico">Consulta - Clínico Geral</option>
-                                <option value="cardiologia">Consulta - Cardiologia</option>
-                                <option value="exames">Exames Laboratoriais</option>
-                                <option value="raiox">Raio-X / Imagem</option>
-                            </select>
-                        </div>
-                        <button type="submit" class="btn-submit">Solicitar Agendamento</button>
-                    </form>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    <div class="bg-stone-950 p-5 rounded-2xl border border-stone-800">
+                        <span class="text-xs text-stone-400 block mb-1">Saldo de Pontos</span>
+                        <span class="text-3xl font-black font-mono text-amber-400" id="profileSaldoPontos">520 pts</span>
+                    </div>
+                    <div class="bg-stone-950 p-5 rounded-2xl border border-stone-800">
+                        <span class="text-xs text-stone-400 block mb-1">Cashback Disponível</span>
+                        <span class="text-3xl font-black font-mono text-emerald-400" id="profileCashback">R$ 26,00</span>
+                    </div>
+                    <div class="bg-stone-950 p-5 rounded-2xl border border-stone-800">
+                        <span class="text-xs text-stone-400 block mb-1">Total Acumulado</span>
+                        <span class="text-2xl font-bold font-mono text-stone-300" id="profileTotalAcumulado">1.250 pts</span>
+                    </div>
+                </div>
+
+                <div class="bg-stone-950 p-4 rounded-xl border border-stone-800/80 text-xs text-stone-400 flex flex-col sm:flex-row justify-between gap-2">
+                    <span><i class="fa-solid fa-calendar-check mr-2 text-amber-400"></i>Data Validade dos Pontos: <strong class="text-white" id="profileValidade">31/12/2026</strong></span>
+                    <span><i class="fa-solid fa-clock-rotate-left mr-2 text-amber-400"></i>Último Resgate: <strong class="text-white" id="profileUltimoResgate">10/08/2026</strong></span>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Rodapé -->
-    <footer>
-        <div class="footer-grid">
-            <div class="footer-col">
-                <h4>🏥 Clínica Vida & Saúde</h4>
-                <p>O seu sistema completo de saúde e bem-estar.</p>
-                <p>© 2024 Todos os direitos reservados.</p>
+
+        <section id="sec-admin" class="tab-content hidden space-y-8">
+            <div class="border-b border-stone-800 pb-4">
+                <h2 class="text-2xl font-black text-white">Painel de Gestão B2B & Operações</h2>
+                <p class="text-xs text-stone-400">Controle integrado de Estoques, Fornecedores e Funcionários</p>
             </div>
-            <div class="footer-col">
-                <h4>Nossos Serviços</h4>
-                <p>Consultas Médicas</p>
-                <p>Exames Laboratoriais</p>
-                <p>Pronto Atendimento</p>
+
+            <div class="bg-stone-900 border border-stone-800 rounded-2xl overflow-hidden space-y-4 p-5">
+                <h3 class="text-lg font-bold text-white flex items-center gap-2">
+                    <i class="fa-solid fa-boxes-stacked text-amber-400"></i> Controle de Estoque de Insumos
+                </h3>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-xs">
+                        <thead class="bg-stone-950 text-stone-400 uppercase">
+                            <tr>
+                                <th class="p-3">ID</th>
+                                <th class="p-3">Insumo</th>
+                                <th class="p-3">Qtd. Atual</th>
+                                <th class="p-3">Mínimo</th>
+                                <th class="p-3">Unidade</th>
+                                <th class="p-3">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-stone-800 text-stone-300" id="tableEstoques">
+                            </tbody>
+                    </table>
+                </div>
             </div>
-            <div class="footer-col">
-                <h4>Contato da Recepção</h4>
-                <p>Email: contato@clinicavida.com.br</p>
-                <p>Telefone: (11) 4000-0000</p>
-                <p>Endereço: Av. da Saúde, 123 - Centro</p>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div class="bg-stone-900 border border-stone-800 rounded-2xl p-5 space-y-4">
+                    <h3 class="text-lg font-bold text-white flex items-center gap-2">
+                        <i class="fa-solid fa-truck-field text-amber-400"></i> Fornecedores Cadastrados
+                    </h3>
+                    <div class="space-y-3" id="listFornecedores">
+                        </div>
+                </div>
+
+                <div class="bg-stone-900 border border-stone-800 rounded-2xl p-5 space-y-4">
+                    <h3 class="text-lg font-bold text-white flex items-center gap-2">
+                        <i class="fa-solid fa-users-gear text-amber-400"></i> Equipe Interna e Turnos
+                    </h3>
+                    <div class="space-y-3" id="listFuncionarios">
+                        </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <div id="cartDrawer" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 hidden transition-all">
+        <div class="absolute right-0 top-0 bottom-0 w-full max-w-md bg-stone-900 text-white p-6 flex flex-col justify-between border-l border-stone-800 shadow-2xl">
+            
+            <div class="space-y-4 flex-1 overflow-y-auto pr-1 custom-scrollbar">
+                <div class="flex justify-between items-center pb-4 border-b border-stone-800">
+                    <h3 class="font-black text-lg flex items-center gap-2">
+                        <i class="fa-solid fa-bag-shopping text-amber-500"></i> Sua Sacola
+                    </h3>
+                    <button onclick="toggleCarrinhoDrawer()" class="text-stone-400 hover:text-white p-2">
+                        <i class="fa-solid fa-xmark text-xl"></i>
+                    </button>
+                </div>
+
+                <div class="space-y-2">
+                    <label class="text-[10px] font-extrabold text-stone-400 uppercase tracking-wider block">Tipo de Ambiente</label>
+                    <div class="grid grid-cols-2 gap-2">
+                        <button onclick="setTipoAmbiente('Salão')" id="btnAmbSalao" class="py-2 px-3 rounded-xl text-xs font-bold border border-amber-500 bg-amber-500 text-stone-950 transition">Salão / Mesa</button>
+                        <button onclick="setTipoAmbiente('Delivery')" id="btnAmbDelivery" class="py-2 px-3 rounded-xl text-xs font-bold border border-stone-700 bg-stone-950 text-stone-300 transition">Delivery</button>
+                    </div>
+                </div>
+
+                <div id="boxDeliveryForm" class="hidden space-y-3 bg-stone-950 p-4 rounded-xl border border-stone-800">
+                    <h4 class="text-xs font-bold text-amber-400 flex items-center gap-2">
+                        <i class="fa-solid fa-location-dot"></i> Endereço de Entrega
+                    </h4>
+                    <input type="text" id="inputEndereco" placeholder="Rua, Número, Bairro, Apto" class="w-full bg-stone-900 border border-stone-800 rounded-lg px-3 py-2 text-xs text-white placeholder-stone-500 focus:outline-none focus:border-amber-500">
+                    <input type="text" id="inputObsDelivery" placeholder="Observações (ex: Deixar na portaria)" class="w-full bg-stone-900 border border-stone-800 rounded-lg px-3 py-2 text-xs text-white placeholder-stone-500 focus:outline-none focus:border-amber-500">
+                </div>
+
+                <div id="listItensCarrinho" class="space-y-3">
+                    </div>
+            </div>
+
+            <div class="border-t border-stone-800 pt-4 space-y-4">
+                <div class="space-y-1 text-xs">
+                    <div class="flex justify-between text-stone-400">
+                        <span>Subtotal</span>
+                        <span id="lblSubtotal">R$ 0,00</span>
+                    </div>
+                    <div class="flex justify-between text-stone-400" id="rowTaxaDelivery">
+                        <span>Taxa de Delivery</span>
+                        <span id="lblTaxaDelivery">R$ 5,00</span>
+                    </div>
+                    <div class="flex justify-between font-black text-base text-white pt-2 border-t border-stone-800">
+                        <span>Total do Pedido</span>
+                        <span id="lblTotal" class="text-amber-400 font-mono">R$ 0,00</span>
+                    </div>
+                </div>
+
+                <div class="space-y-1">
+                    <label class="text-[10px] font-extrabold text-stone-400 uppercase tracking-wider block">Forma de Pagamento</label>
+                    <select id="selectPagamento" class="w-full bg-stone-950 border border-stone-800 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-500">
+                        <option value="Pix">PIX (Confirmação Automática)</option>
+                        <option value="Credito">Cartão de Crédito</option>
+                        <option value="Debito">Cartão de Débito</option>
+                    </select>
+                </div>
+
+                <button onclick="confirmarEEnviarPedido()" class="w-full bg-amber-500 hover:bg-amber-400 text-stone-950 font-black py-3.5 rounded-xl transition shadow-lg shadow-amber-500/20 text-center uppercase tracking-wider text-xs">
+                    Finalizar e Processar Pedido
+                </button>
             </div>
         </div>
-    </footer>
+    </div>
 
     <script>
-        // Simulando a ação do banco de dados ao clicar em agendar
-        document.getElementById('formAgendamento').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Pega os dados simulando a entidade Clientes
-            const nome = document.getElementById('nome').value;
-            const servico = document.getElementById('servico').options[document.getElementById('servico').selectedIndex].text;
-            
-            alert(`✅ Cadastro e Solicitação realizados com sucesso!
+        // Mapeamento dos Dados do Banco de Dados SmartCoffee
+        const Database = {
+            categorias: [
+                { id: 1, nome: "Cafés Especiais", descricao: "Bebidas quentes à base de espresso", ordem: 1, exibir: true },
+                { id: 2, nome: "Bebidas Geladas", descricao: "Refrescantes e extrações a frio", ordem: 2, exibir: true },
+                { id: 3, nome: "Acompanhamentos", descricao: "Salgados e doces artesanais", ordem: 3, exibir: true }
+            ],
 
-Paciente: ${nome}
-Serviço/Área: ${servico}
+            produtos: [
+                { id: 101, idCat: 1, nome: "Espresso Smart Double", preco: 9.50, volume: "60ml", setor: "Barista", disponivel: true, desc: "Dose dupla com extração precisa de grãos 100% Arábica." },
+                { id: 102, idCat: 1, nome: "Cappuccino Italiano", preco: 14.00, volume: "180ml", setor: "Barista", disponivel: true, desc: "Espresso, leite vaporizado e espuma cremosa." },
+                { id: 103, idCat: 1, nome: "Flat White Velvet", preco: 16.50, volume: "200ml", setor: "Barista", disponivel: true, desc: "Dose dupla de Ristretto com leite vaporizado sedoso." },
+                { id: 104, idCat: 2, nome: "Iced Caramel Macchiato", preco: 18.00, volume: "400ml", setor: "Barista", disponivel: true, desc: "Espresso gelado com baunilha, leite e calda de caramelo." },
+                { id: 105, idCat: 2, nome: "Cold Brew Citrus", preco: 15.00, volume: "350ml", setor: "Barista", disponivel: true, desc: "Extração a frio por 18h finalizada com limão siciliano." },
+                { id: 106, idCat: 3, nome: "Croissant Folhado Artesanal", preco: 12.00, volume: "130g", setor: "Cozinha", disponivel: true, desc: "Massa amanteigada assada diariamente na casa." },
+                { id: 107, idCat: 3, nome: "Toast de Queijos Nobres", preco: 19.90, volume: "220g", setor: "Cozinha", disponivel: true, desc: "Pão de fermentação natural com mix de queijos derretidos." }
+            ],
 
-Nossa recepção criará o seu Registro (ID_Cliente) e confirmará o Ambiente (Consultório) em breve via WhatsApp.`);
-            
-            this.reset(); // Limpa o formulário
-        });
+            clienteAtivo: {
+                id: 1,
+                nome: "Mariana Silva",
+                cpf: "123.456.789-00",
+                email: "mariana.silva@email.com",
+                telefone: "(19) 99876-5432",
+                nascimento: "1994-05-12",
+                nivel: "Gold",
+                cashbackDisponivel: 26.00,
+                fidelidade: {
+                    id: 501,
+                    saldoPontos: 520,
+                    totalAcumulado: 1250,
+                    dataValidade: "31/12/2026",
+                    dataUltimoResgate: "10/08/2026"
+                }
+            },
+
+            pedidosAtivos: [
+                {
+                    idPedido: 8901,
+                    dataHora: "13/08/2026 13:45",
+                    statusPedido: "Em Preparo",
+                    valorTotal: 33.50,
+                    tipoAmbiente: "Delivery",
+                    setorPreparo: "Barista & Cozinha",
+                    itens: ["1x Cappuccino Italiano", "1x Toast de Queijos Nobres"],
+                    delivery: {
+                        idDelivery: 301,
+                        endereco: "Av. Principal, 1000 - Apto 42",
+                        taxa: 5.00,
+                        tempoEstimado: "25 min",
+                        statusEntrega: "Aguardando Preparo",
+                        obs: "Tocar campainha"
+                    },
+                    pagamento: {
+                        idPagamento: 701,
+                        forma: "Pix",
+                        valor: 33.50,
+                        status: "Aprovado",
+                        codigoAuth: "AUTH-898123-PIX"
+                    }
+                }
+            ],
+
+            estoques: [
+                { id: 1, insumo: "Grãos de Café Arábica Especiais", quantidade: 18.5, minimo: 5.0, unidade: "kg" },
+                { id: 2, insumo: "Leite Integral Tipo A", quantidade: 32.0, minimo: 10.0, unidade: "Litros" },
+                { id: 3, insumo: "Xarope de Caramelo", quantidade: 2.2, minimo: 1.0, unidade: "Litros" },
+                { id: 4, insumo: "Massa de Croissant Congelada", quantidade: 45, minimo: 15, unidade: "Unidades" }
+            ],
+
+            fornecedores: [
+                { id: 1, razao: "Fazenda Grão Nobre Ltda", fantasia: "Grão Nobre Especiais", cnpj: "12.345.678/0001-90", email: "vendas@graonobre.com", telefone: "(35) 3421-1100" },
+                { id: 2, razao: "Laticínios Vale Verde SA", fantasia: "Vale Verde Fresh", cnpj: "98.765.432/0001-10", email: "pedidos@valeverde.com", telefone: "(19) 3800-2200" }
+            ],
+
+            funcionarios: [
+                { id: 1, nome: "Lucas Barista", cpf: "111.222.333-44", cargo: "Barista Senior", turno: "Manhã/Tarde", admissao: "15/01/2024" },
+                { id: 2, nome: "Carla Chefe", cpf: "555.666.777-88", cargo: "Cozinheira Líder", turno: "Integral", admissao: "02/03/2023" }
+            ]
+        };
+
+        // Estado do Carrinho e Filtros
+        let carrinho = [];
+        let tipoAmbienteSel = 'Salão';
+        let categoriaFiltroSel = null;
+
+        function initApp() {
+            renderCategorias();
+            renderProdutos();
+            renderPedidos();
+            renderPerfil();
+            renderAdmin();
+        }
+
+        // Renderizar Categorias
+        function renderCategorias() {
+            const container = document.getElementById('containerCategorias');
+            container.innerHTML = `<button onclick="filtrarPorCategoria(null)" class="btn-cat font-bold text-xs px-3.5 py-2 rounded-xl transition ${categoriaFiltroSel === null ? 'bg-amber-500 text-stone-950' : 'bg-stone-950 text-stone-400 border border-stone-800 hover:text-white'}">Todos</button>`;
+
+            Database.categorias.forEach(cat => {
+                const active = categoriaFiltroSel === cat.id;
+                container.innerHTML += `
+                    <button onclick="filtrarPorCategoria(${cat.id})" class="btn-cat font-bold text-xs px-3.5 py-2 rounded-xl transition ${active ? 'bg-amber-500 text-stone-950' : 'bg-stone-950 text-stone-400 border border-stone-800 hover:text-white'}">
+                        ${cat.nome}
+                    </button>
+                `;
+            });
+        }
+
+        // Renderizar Produtos
+        function renderProdutos() {
+            const grid = document.getElementById('gridProdutos');
+            const termoBusca = document.getElementById('inputBusca').value.toLowerCase();
+
+            grid.innerHTML = '';
+
+            const produtosFiltrados = Database.produtos.filter(p => {
+                const bateCat = categoriaFiltroSel === null || p.idCat === categoriaFiltroSel;
+                const bateBusca = p.nome.toLowerCase().includes(termoBusca) || p.desc.toLowerCase().includes(termoBusca);
+                return bateCat && bateBusca;
+            });
+
+            if (produtosFiltrados.length === 0) {
+                grid.innerHTML = `<div class="col-span-full text-center py-12 text-stone-500 text-sm">Nenhum produto encontrado.</div>`;
+                return;
+            }
+
+            produtosFiltrados.forEach(prod => {
+                const cat = Database.categorias.find(c => c.id === prod.idCat);
+                grid.innerHTML += `
+                    <div class="bg-stone-900 border border-stone-800 hover:border-amber-500/50 rounded-2xl p-5 flex flex-col justify-between transition group shadow-lg">
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-center">
+                                <span class="text-[10px] font-bold bg-stone-950 text-amber-400 border border-amber-500/30 px-2.5 py-0.5 rounded-full uppercase">${cat ? cat.nome : 'Especial'}</span>
+                                <span class="text-xs font-mono text-stone-400"><i class="fa-solid fa-mug-saucer text-amber-500 mr-1"></i>${prod.volume}</span>
+                            </div>
+                            <h3 class="font-extrabold text-white text-lg group-hover:text-amber-400 transition">${prod.nome}</h3>
+                            <p class="text-stone-400 text-xs line-clamp-2 leading-relaxed">${prod.desc}</p>
+                            <span class="inline-block text-[10px] text-stone-500 font-semibold bg-stone-950 px-2 py-1 rounded border border-stone-800">Setor: ${prod.setor}</span>
+                        </div>
+                        <div class="pt-4 mt-4 border-t border-stone-800/80 flex items-center justify-between">
+                            <div>
+                                <span class="text-[10px] text-stone-500 block">Preço Unitário</span>
+                                <span class="text-lg font-black font-mono text-white">R$ ${prod.preco.toFixed(2).replace('.', ',')}</span>
+                            </div>
+                            <button onclick="adicionarAoCarrinho(${prod.id})" class="bg-amber-500 hover:bg-amber-400 text-stone-950 font-black px-3.5 py-2 rounded-xl text-xs flex items-center gap-1.5 transition active:scale-95 shadow-md shadow-amber-500/10">
+                                <i class="fa-solid fa-plus"></i> Adicionar
+                            </button>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        // Renderizar Pedidos Ativos
+        function renderPedidos() {
+            const container = document.getElementById('containerPedidos');
+            container.innerHTML = '';
+
+            if (Database.pedidosAtivos.length === 0) {
+                container.innerHTML = `<p class="col-span-full text-stone-500 text-xs">Nenhum pedido ativo no momento.</p>`;
+                return;
+            }
+
+            Database.pedidosAtivos.forEach(ped => {
+                container.innerHTML += `
+                    <div class="bg-stone-900 border border-stone-800 rounded-2xl p-5 space-y-4">
+                        <div class="flex justify-between items-start border-b border-stone-800 pb-3">
+                            <div>
+                                <span class="text-xs font-mono text-stone-400">#PED-${ped.idPedido}</span>
+                                <h4 class="font-bold text-white text-sm mt-0.5">${ped.tipoAmbiente}</h4>
+                            </div>
+                            <span class="text-[10px] bg-amber-500/20 text-amber-300 border border-amber-500/30 px-2.5 py-1 rounded-full font-bold uppercase">${ped.statusPedido}</span>
+                        </div>
+
+                        <div class="space-y-1 text-xs text-stone-300">
+                            <p class="font-semibold text-stone-400">Itens:</p>
+                            <ul class="list-disc list-inside space-y-0.5 text-stone-200">
+                                ${ped.itens.map(i => `<li>${i}</li>`).join('')}
+                            </ul>
+                        </div>
+
+                        ${ped.delivery ? `
+                            <div class="bg-stone-950 p-3 rounded-xl border border-stone-800 text-xs space-y-1">
+                                <p class="text-amber-400 font-bold"><i class="fa-solid fa-truck mr-1"></i> Delivery (${ped.delivery.tempoEstimado})</p>
+                                <p class="text-stone-400 truncate">${ped.delivery.endereco}</p>
+                            </div>
+                        ` : ''}
+
+                        <div class="pt-2 flex justify-between items-center text-xs border-t border-stone-800">
+                            <span class="text-stone-500">Pagamento: <strong>${ped.pagamento.forma}</strong> (${ped.pagamento.status})</span>
+                            <span class="font-black font-mono text-amber-400 text-sm">R$ ${ped.valorTotal.toFixed(2).replace('.', ',')}</span>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        // Renderizar Perfil e Fidelidade
+        function renderPerfil() {
+            const c = Database.clienteAtivo;
+            document.getElementById('lblNavClienteNome').textContent = c.nome;
+            document.getElementById('lblNavClientePontos').textContent = `${c.fidelidade.saldoPontos} Pts`;
+
+            document.getElementById('profileNome').textContent = c.nome;
+            document.getElementById('profileNivel').textContent = `Nível ${c.nivel}`;
+            document.getElementById('profileContato').textContent = `CPF: ${c.cpf} • ${c.email}`;
+            document.getElementById('profileSaldoPontos').textContent = `${c.fidelidade.saldoPontos} pts`;
+            document.getElementById('profileCashback').textContent = `R$ ${c.cashbackDisponivel.toFixed(2).replace('.', ',')}`;
+            document.getElementById('profileTotalAcumulado').textContent = `${c.fidelidade.totalAcumulado} pts`;
+            document.getElementById('profileValidade').textContent = c.fidelidade.dataValidade;
+            document.getElementById('profileUltimoResgate').textContent = c.fidelidade.dataUltimoResgate;
+        }
+
+        // Renderizar Gestão B2B
+        function renderAdmin() {
+            // Estoques
+            const tbEst = document.getElementById('tableEstoques');
+            tbEst.innerHTML = '';
+            Database.estoques.forEach(est => {
+                const critico = est.quantidade <= est.minimo;
+                tbEst.innerHTML += `
+                    <tr>
+                        <td class="p-3 font-mono text-stone-500">#EST-${est.id}</td>
+                        <td class="p-3 font-bold text-white">${est.insumo}</td>
+                        <td class="p-3 font-mono ${critico ? 'text-red-400 font-bold' : 'text-stone-300'}">${est.quantidade}</td>
+                        <td class="p-3 font-mono text-stone-400">${est.minimo}</td>
+                        <td class="p-3 text-stone-400">${est.unidade}</td>
+                        <td class="p-3">
+                            <span class="px-2 py-0.5 rounded text-[10px] font-bold ${critico ? 'bg-red-500/20 text-red-400 border border-red-500/30' : 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'}">
+                                ${critico ? 'Abaixo do Mínimo' : 'Suficiente'}
+                            </span>
+                        </td>
+                    </tr>
+                `;
+            });
+
+            // Fornecedores
+            const listF = document.getElementById('listFornecedores');
+            listF.innerHTML = '';
+            Database.fornecedores.forEach(f => {
+                listF.innerHTML += `
+                    <div class="bg-stone-950 p-3 rounded-xl border border-stone-800 text-xs space-y-1">
+                        <div class="flex justify-between font-bold text-white">
+                            <span>${f.fantasia}</span>
+                            <span class="text-stone-500 font-mono">${f.cnpj}</span>
+                        </div>
+                        <p class="text-stone-400">${f.razao}</p>
+                        <p class="text-amber-500/80 font-mono">${f.email} • ${f.telefone}</p>
+                    </div>
+                `;
+            });
+
+            // Funcionários
+            const listFunc = document.getElementById('listFuncionarios');
+            listFunc.innerHTML = '';
+            Database.funcionarios.forEach(fn => {
+                listFunc.innerHTML += `
+                    <div class="bg-stone-950 p-3 rounded-xl border border-stone-800 text-xs space-y-1">
+                        <div class="flex justify-between font-bold text-white">
+                            <span>${fn.nome}</span>
+                            <span class="text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded">${fn.cargo}</span>
+                        </div>
+                        <p class="text-stone-400">Turno: ${fn.turno} • Admissão: ${fn.admissao}</p>
+                    </div>
+                `;
+            });
+        }
+
+        // Funções do Carrinho
+        function filtrarPorCategoria(idCat) {
+            categoriaFiltroSel = idCat;
+            renderCategorias();
+            renderProdutos();
+        }
+
+        function filtrarProdutos() {
+            renderProdutos();
+        }
+
+        function adicionarAoCarrinho(idProd) {
+            const prod = Database.produtos.find(p => p.id === idProd);
+            const item = carrinho.find(c => c.id === idProd);
+
+            if (item) {
+                item.qtd++;
+            } else {
+                carrinho.push({ ...prod, qtd: 1 });
+            }
+
+            showToast(`"${prod.nome}" adicionado à sacola!`);
+            updateCarrinhoUI();
+        }
+
+        function alterarQtdCarrinho(idProd, delta) {
+            const item = carrinho.find(c => c.id === idProd);
+            if (item) {
+                item.qtd += delta;
+                if (item.qtd <= 0) {
+                    carrinho = carrinho.filter(c => c.id !== idProd);
+                }
+            }
+            updateCarrinhoUI();
+        }
+
+        function setTipoAmbiente(tipo) {
+            tipoAmbienteSel = tipo;
+            const btnS = document.getElementById('btnAmbSalao');
+            const btnD = document.getElementById('btnAmbDelivery');
+            const boxD = document.getElementById('boxDeliveryForm');
+
+            if (tipo === 'Salão') {
+                btnS.className = "py-2 px-3 rounded-xl text-xs font-bold border border-amber-500 bg-amber-500 text-stone-950 transition";
+                btnD.className = "py-2 px-3 rounded-xl text-xs font-bold border border-stone-700 bg-stone-950 text-stone-300 transition";
+                boxD.classList.add('hidden');
+            } else {
+                btnD.className = "py-2 px-3 rounded-xl text-xs font-bold border border-amber-500 bg-amber-500 text-stone-950 transition";
+                btnS.className = "py-2 px-3 rounded-xl text-xs font-bold border border-stone-700 bg-stone-950 text-stone-300 transition";
+                boxD.classList.remove('hidden');
+            }
+
+            updateCarrinhoUI();
+        }
+
+        function updateCarrinhoUI() {
+            const totalQtd = carrinho.reduce((acc, curr) => acc + curr.qtd, 0);
+            document.getElementById('cartBadge').textContent = totalQtd;
+
+            const list = document.getElementById('listItensCarrinho');
+            list.innerHTML = '';
+
+            let subtotal = 0;
+
+            if (carrinho.length === 0) {
+                list.innerHTML = `<p class="text-center py-8 text-xs text-stone-500">Sua sacola está vazia.</p>`;
+            } else {
+                carrinho.forEach(i => {
+                    const totalItem = i.preco * i.qtd;
+                    subtotal += totalItem;
+
+                    list.innerHTML += `
+                        <div class="bg-stone-950 p-3 rounded-xl border border-stone-800 flex justify-between items-center text-xs">
+                            <div class="space-y-0.5">
+                                <h4 class="font-bold text-white">${i.nome}</h4>
+                                <p class="text-stone-500 font-mono">R$ ${i.preco.toFixed(2)} un.</p>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <button onclick="alterarQtdCarrinho(${i.id}, -1)" class="w-6 h-6 rounded bg-stone-800 text-stone-200 font-bold hover:bg-stone-700">-</button>
+                                <span class="font-mono font-bold text-amber-400 w-4 text-center">${i.qtd}</span>
+                                <button onclick="alterarQtdCarrinho(${i.id}, 1)" class="w-6 h-6 rounded bg-stone-800 text-stone-200 font-bold hover:bg-stone-700">+</button>
+                            </div>
+                        </div>
+                    `;
+                });
+            }
+
+            const taxa = tipoAmbienteSel === 'Delivery' ? 5.00 : 0.00;
+            const total = subtotal + taxa;
+
+            document.getElementById('lblSubtotal').textContent = `R$ ${subtotal.toFixed(2).replace('.', ',')}`;
+            document.getElementById('lblTaxaDelivery').textContent = `R$ ${taxa.toFixed(2).replace('.', ',')}`;
+            document.getElementById('lblTotal').textContent = `R$ ${total.toFixed(2).replace('.', ',')}`;
+            document.getElementById('rowTaxaDelivery').style.display = tipoAmbienteSel === 'Delivery' ? 'flex' : 'none';
+        }
+
+        function confirmarEEnviarPedido() {
+            if (carrinho.length === 0) {
+                showToast("Adicione produtos à sacola!", "error");
+                return;
+            }
+
+            if (tipoAmbienteSel === 'Delivery') {
+                const end = document.getElementById('inputEndereco').value;
+                if (!end.trim()) {
+                    showToast("Informe o endereço de entrega!", "error");
+                    return;
+                }
+            }
+
+            const subtotal = carrinho.reduce((a, b) => a + (b.preco * b.qtd), 0);
+            const taxa = tipoAmbienteSel === 'Delivery' ? 5.00 : 0.00;
+            const total = subtotal + taxa;
+            const forma = document.getElementById('selectPagamento').value;
+
+            const novoPedido = {
+                idPedido: Math.floor(1000 + Math.random() * 9000),
+                dataHora: new Date().toLocaleString(),
+                statusPedido: "Recebido",
+                valorTotal: total,
+                tipoAmbiente: tipoAmbienteSel,
+                setorPreparo: "Barista & Cozinha",
+                itens: carrinho.map(c => `${c.qtd}x ${c.nome}`),
+                delivery: tipoAmbienteSel === 'Delivery' ? {
+                    idDelivery: Math.floor(100 + Math.random() * 900),
+                    endereco: document.getElementById('inputEndereco').value,
+                    taxa: 5.00,
+                    tempoEstimado: "20-30 min",
+                    statusEntrega: "Em separação",
+                    obs: document.getElementById('inputObsDelivery').value
+                } : null,
+                pagamento: {
+                    idPagamento: Math.floor(500 + Math.random() * 900),
+                    forma: forma,
+                    valor: total,
+                    status: "Aprovado",
+                    codigoAuth: `AUTH-${Math.floor(100000 + Math.random() * 900000)}`
+                }
+            };
+
+            Database.pedidosAtivos.unshift(novoPedido);
+
+            // Regra de acúmulo de pontos no programa de fidelidade
+            const pontosGanhos = Math.floor(total);
+            Database.clienteAtivo.fidelidade.saldoPontos += pontosGanhos;
+            Database.clienteAtivo.fidelidade.totalAcumulado += pontosGanhos;
+
+            carrinho = [];
+            updateCarrinhoUI();
+            toggleCarrinhoDrawer();
+            renderPedidos();
+            renderPerfil();
+
+            showToast(`Pedido #${novoPedido.idPedido} enviado! +${pontosGanhos} pontos acumulados.`);
+            switchTab('pedidos');
+        }
+
+        // Navegação de Abas SPA
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.nav-tab').forEach(el => el.classList.remove('active', 'border-amber-500', 'text-amber-400'));
+
+            document.getElementById(`sec-${tabId}`).classList.remove('hidden');
+            const tabBtn = document.getElementById(`tab-${tabId}`);
+            if (tabBtn) tabBtn.classList.add('active', 'border-amber-500', 'text-amber-400');
+        }
+
+        function toggleCarrinhoDrawer() {
+            document.getElementById('cartDrawer').classList.toggle('hidden');
+        }
+
+        // Sistema de Mensagens Toast
+        function showToast(msg, type = "success") {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            toast.className = `p-3 rounded-xl text-xs font-bold shadow-xl border flex items-center gap-2 transition-all duration-300 pointer-events-auto ${type === 'success' ? 'bg-stone-900 border-amber-500/50 text-white' : 'bg-red-950 border-red-500/50 text-red-200'}`;
+            toast.innerHTML = `<i class="fa-solid ${type === 'success' ? 'fa-circle-check text-amber-400' : 'fa-circle-exclamation text-red-400'} text-sm"></i> ${msg}`;
+
+            container.appendChild(toast);
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+
+        // Inicialização
+        document.addEventListener('DOMContentLoaded', initApp);
     </script>
 </body>
 </html>
