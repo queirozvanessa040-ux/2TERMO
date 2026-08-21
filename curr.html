@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currículo | Vanessa Queiroz da Silva</title>
+    
+    <!-- Google Fonts & Font Awesome Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --primary-color: #00f2fe;
+            --secondary-color: #4facfe;
+            --bg-dark: #0f172a;
+            --card-bg: rgba(30, 41, 59, 0.7);
+            --border-color: rgba(255, 255, 255, 0.1);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 40px 20px;
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(79, 172, 254, 0.15) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(0, 242, 254, 0.15) 0px, transparent 50%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 48px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Header Layout */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 32px;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            gap: 24px;
+        }
+
+        .header-info h1 {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 2.2rem;
+            text-transform: uppercase;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.5px;
+            margin-bottom: 8px;
+        }
+
+        .header-info .badge {
+            display: inline-block;
+            background: rgba(79, 172, 254, 0.1);
+            color: var(--primary-color);
+            border: 1px solid rgba(0, 242, 254, 0.3);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .contact-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .contact-list li {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .contact-list i {
+            color: var(--primary-color);
+            width: 16px;
+        }
+
+        .contact-list a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-list a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Sections Grid Layout */
+        .section-title {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 1.2rem;
+            color: var(--text-main);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .section-title i {
+            color: var(--primary-color);
+            font-size: 1rem;
+        }
+
+        section {
+            margin-bottom: 36px;
+        }
+
+        p {
+            color: var(--text-muted);
+            font-size: 0.98rem;
+        }
+
+        /* Objective Box */
+        .objective-card {
+            background: rgba(255, 255, 255, 0.03);
+            border-left: 4px solid var(--primary-color);
+            padding: 20px;
+            border-radius: 0 12px 12px 0;
+        }
+
+        /* Dual Column Layout */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+
+        /* Education & Complementary Cards */
+        .timeline-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 12px;
+            position: relative;
+        }
+
+        .timeline-card h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        .timeline-card .institution {
+            color: var(--primary-color);
+            font-size: 0.85rem;
+            margin-top: 2px;
+        }
+
+        .timeline-card .status {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 8px;
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+
+        /* Technical Skills Badges/Grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 16px;
+        }
+
+        .skill-item {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 16px;
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+
+        .skill-item:hover {
+            transform: translateY(-2px);
+            border-color: rgba(0, 242, 254, 0.4);
+        }
+
+        .skill-item strong {
+            display: block;
+            color: var(--primary-color);
+            margin-bottom: 4px;
+            font-size: 0.95rem;
+        }
+
+        .skill-item span {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+        }
+
+        /* Competencies List */
+        .competencies-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            list-style: none;
+        }
+
+        .competencies-list li {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border-color);
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-size: 0.88rem;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .competencies-list li i {
+            color: var(--secondary-color);
+            font-size: 0.8rem;
+        }
+
+        /* Languages */
+        .language-container {
+            display: flex;
+            gap: 16px;
+        }
+
+        .language-card {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 16px;
+            text-align: center;
+        }
+
+        .language-card strong {
+            display: block;
+            color: var(--text-main);
+            margin-bottom: 4px;
+        }
+
+        .language-card span {
+            color: var(--primary-color);
+            font-size: 0.85rem;
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 40px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+        }
+
+        footer cite {
+            font-family: 'Archivo Black', sans-serif;
+            font-style: normal;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            opacity: 0.6;
+        }
+
+        /* Print Optimization */
+        @media print {
+            body {
+                background: #fff;
+                color: #000;
+                padding: 0;
+            }
+            .container {
+                box-shadow: none;
+                border: none;
+                padding: 0;
+                background: transparent;
+            }
+            .header-info h1 {
+                color: #000;
+                -webkit-text-fill-color: initial;
+            }
+            .timeline-card, .skill-item, .language-card {
+                border: 1px solid #ddd;
+                background: #none;
+            }
+            .contact-list a, p, span {
+                color: #333 !important;
+            }
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 768px) {
+            .container {
+                padding: 24px;
+            }
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .language-container {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <header>
+            <div class="header-info">
+                <span class="badge"><i class="fa-solid fa-code"></i> T.I. & Infraestrutura</span>
+                <h1>Vanessa Queiroz</h1>
+                <p>16 anos | Estudante de Tecnologia</p>
+            </div>
+            
+            <ul class="contact-list">
+                <li><i class="fa-solid fa-location-dot"></i> Limeira - SP</li>
+                <li><i class="fa-solid fa-phone"></i> (19) 98714-8531</li>
+                <li><i class="fa-solid fa-envelope"></i> <a href="mailto:queirozvanessa040@gmail.com">queirozvanessa040@gmail.com</a></li>
+            </ul>
+        </header>
+
+        <section>
+            <h2 class="section-title"><i class="fa-solid fa-bullseye"></i> Objetivo</h2>
+            <div class="objective-card">
+                <p>Estágio em Tecnologia da Informação – Infraestrutura. Busco minha primeira oportunidade na área de TI para desenvolver experiência prática em suporte, sistemas, hardware, software e redes, aplicando os conhecimentos adquiridos no curso Técnico em Desenvolvimento de Sistemas e contribuindo de forma responsável com a equipe.</p>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="section-title"><i class="fa-solid fa-graduation-cap"></i> Formação Acadêmica</h2>
+            <div class="grid-2">
+                <div class="timeline-card">
+                    <h3>Ensino Médio</h3>
+                    <div class="institution">SESI Limeira/SP</div>
+                    <span class="status"><i class="fa-regular fa-clock"></i> Em andamento</span>
+                </div>
+                <div class="timeline-card">
+                    <h3>Técnico em Desenvolvimento de Sistemas</h3>
+                    <div class="institution">SENAI Luiz Vargas - Limeira/SP</div>
+                    <span class="status"><i class="fa-regular fa-clock"></i> Em andamento</span>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="section-title"><i class="fa-solid fa-microchip"></i> Conhecimentos Técnicos</h2>
+            <div class="skills-grid">
+                <div class="skill-item">
+                    <strong><i class="fa-solid fa-laptop"></i> Informática & Sistemas</strong>
+                    <span>Conhecimentos básicos gerais e alta facilidade de aprendizado com novas tecnologias.</span>
+                </div>
+                <div class="skill-item">
+                    <strong><i class="fa-brands fa-windows"></i> Sistema Operacional</strong>
+                    <span>Windows: Familiaridade com uso diário e configurações básicas de sistema.</span>
+                </div>
+                <div class="skill-item">
+                    <strong><i class="fa-solid fa-file-lines"></i> Pacote Office</strong>
+                    <span>Domínio prático em ferramentas essenciais: Word, Excel e PowerPoint.</span>
+                </div>
+                <div class="skill-item">
+                    <strong><i class="fa-solid fa-network-wired"></i> Redes & IoT</strong>
+                    <span>Fundamentos de infraestrutura de redes e ecossistema de dispositivos IoT.</span>
+                </div>
+                <div class="skill-item">
+                    <strong><i class="fa-solid fa-memory"></i> Hardware & Periféricos</strong>
+                    <span>Contato acadêmico direto com montagem, componentes e projetos práticos.</span>
+                </div>
+                <div class="skill-item">
+                    <strong><i class="fa-solid fa-code"></i> Desenvolvimento</strong>
+                    <span>Noções de lógica de programação e arquitetura/construção de aplicações.</span>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="section-title"><i class="fa-solid fa-user-check"></i> Competências Interpessoais</h2>
+            <ul class="competencies-list">
+                <li><i class="fa-solid fa-check"></i> Organização e Responsabilidade</li>
+                <li><i class="fa-solid fa-check"></i> Atenção aos Detalhes</li>
+                <li><i class="fa-solid fa-check"></i> Pontualidade e Comprometimento</li>
+                <li><i class="fa-solid fa-check"></i> Facilidade de Aprendizado</li>
+                <li><i class="fa-solid fa-check"></i> Trabalho em Equipe</li>
+                <li><i class="fa-solid fa-check"></i> Atendimento Cordial e Respeitoso</li>
+                <li><i class="fa-solid fa-check"></i> Proatividade na Solução de Problemas</li>
+                <li><i class="fa-solid fa-check"></i> Boa Comunicação e Escuta Ativa</li>
+            </ul>
+        </section>
+
+        <div class="grid-2">
+            <section>
+                <h2 class="section-title"><i class="fa-solid fa-certificate"></i> Cursos Complementares</h2>
+                <div class="timeline-card">
+                    <h3>Atendimento ao Cliente</h3>
+                    <div class="institution">Fundação Bradesco</div>
+                    <span class="status">Em andamento</span>
+                </div>
+                <div class="timeline-card">
+                    <h3>Pacote Office Básico</h3>
+                    <div class="institution">INEAP</div>
+                    <span class="status">Em andamento</span>
+                </div>
+            </section>
+
+            <section>
+                <h2 class="section-title"><i class="fa-solid fa-language"></i> Idiomas</h2>
+                <div class="language-container">
+                    <div class="language-card">
+                        <strong>Português</strong>
+                        <span>Nativo</span>
+                    </div>
+                    <div class="language-card">
+                        <strong>Inglês</strong>
+                        <span>Básico (Leitura / Escrita)</span>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <footer>
+            <cite>Desenvolvido via HTML5 & CSS3 por Vanessa Queiroz da Silva</cite>
+        </footer>
+
+    </div>
+
+</body>
+</html>
