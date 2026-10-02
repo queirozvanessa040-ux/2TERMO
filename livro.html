@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Livro 3D Interativo</title>
+
+    <style>
+        :root {
+            --bg-color: #1a1a1a;
+            --book-width: 320px;
+            --book-height: 480px;
+            --page-bg: #f4ecd8;
+            --text-color: #2c2523;
+            --cover-bg: #8b0000;
+            --accent-color: #d4af37;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Georgia', serif;
+            overflow: hidden;
+        }
+
+        /* Controles Superiores */
+        .controls {
+            margin-bottom: 30px;
+            display: flex;
+            gap: 15px;
+            z-index: 100;
+        }
+
+        button {
+            background: var(--cover-bg);
+            color: var(--accent-color);
+            border: 2px solid var(--accent-color);
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            background: var(--accent-color);
+            color: var(--cover-bg);
+        }
+
+        /* Cenário 3D */
+        .scene {
+            width: calc(var(--book-width) * 2);
+            height: var(--book-height);
+            perspective: 1500px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Estrutura do Livro */
+        .book {
+            width: var(--book-width);
+            height: var(--book-height);
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 1s ease-in-out;
+            /* Centraliza o eixo no meio do livro aberto */
+            transform: translateX(0px); 
+        }
+
+        /* Posicionamento quando o livro está FECHADO */
+        .book.closed {
+            transform: translateX(calc(var(--book-width) / -2));
+        }
+
+        /* Folhas / Páginas Dobráveis */
+        .paper {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            transform-origin: left center;
+            transform-style: preserve-3d;
+            transition: transform 1s cubic-bezier(0.645, 0.045, 0.355, 1);
+        }
+
+        /* Faces Frente e Verso de cada folha */
+        .front, .back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            backface-visibility: hidden;
+            padding: 30px;
+            overflow: hidden;
+            box-shadow: inset 0 0 15px rgba(0,0,0,0.1);
+        }
+
+        .front {
+            background-color: var(--page-bg);
+            color: var(--text-color);
+            z-index: 1;
+        }
+
+        .back {
+            background-color: var(--page-bg);
+            color: var(--text-color);
+            transform: rotateY(180deg);
+        }
+
+        /* Estilização da Capa */
+        .cover-front {
+            background-color: var(--cover-bg);
+            color: var(--accent-color);
+            border: 4px solid var(--accent-color);
+            border-radius: 0 8px 8px 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .cover-back {
+            background-color: var(--cover-bg);
+            color: var(--accent-color);
+            border: 4px solid var(--accent-color);
+            border-radius: 8px 0 0 8px;
+        }
+
+        /* Virada de Folhas */
+        .flipped {
+            transform: rotateY(-180deg);
+        }
+
+        /* Conteúdo dos textos */
+        h1 { font-size: 28px; margin-bottom: 10px; }
+        h2 { font-size: 20px; color: #8b0000; margin-bottom: 15px; }
+        p { font-size: 14px; line-height: 1.6; text-align: justify; margin-bottom: 10px; }
+        .page-number { position: absolute; bottom: 15px; font-size: 12px; opacity: 0.6; }
+        .front .page-number { right: 20px; }
+        .back .page-number { left: 20px; }
+    </style>
+</head>
+<body>
+
+    <!-- Botões de Ação -->
+    <div class="controls">
+        <button id="toggleBookBtn" onclick="bookApp.toggleOpen()">Abrir Livro</button>
+        <button onclick="bookApp.prevPage()">◀ Voltar</button>
+        <button onclick="bookApp.nextPage()">Avançar ▶</button>
+    </div>
+
+    <!-- Estrutura 3D -->
+    <div class="scene">
+        <div id="book" class="book closed">
+            
+            <!-- Folha 1: Capa (Frente) / Capítulo 1 (Verso) -->
+            <div id="p1" class="paper" style="z-index: 3;">
+                <div class="front cover-front">
+                    <h1>O ENIGMA</h1>
+                    <p style="text-align: center; color: var(--accent-color);">— Edição 3D Interativa —</p>
+                </div>
+                <div class="back">
+                    <h2>Capítulo I</h2>
+                    <p>O tempo não é uma linha reta, mas uma malha tecida por nossas próprias memórias e percepções.</p>
+                    <p>Quando a máquina ligou, não houve faíscas. Apenas um sussurro grave vindo do circuito.</p>
+                    <span class="page-number">1</span>
+                </div>
+            </div>
+
+            <!-- Folha 2: Capítulo 2 (Frente) / Capítulo 3 (Verso) -->
+            <div id="p2" class="paper" style="z-index: 2;">
+                <div class="front">
+                    <h2>Capítulo II</h2>
+                    <p>A tela piscou em verde e a inteligência perguntou: "Quem é você?"</p>
+                    <p>Alan hesitou antes de responder. Sentiu que aquela pergunta mudaria o rumo da história.</p>
+                    <span class="page-number">2</span>
+                </div>
+                <div class="back">
+                    <h2>Capítulo III</h2>
+                    <p>A consciência sintética se expandiu além dos limites da memória física.</p>
+                    <p>Este código que roda no seu navegador é o registro vivo daquela primeira conexão.</p>
+                    <span class="page-number">3</span>
+                </div>
+            </div>
+
+            <!-- Folha 3: Contracapa Interna (Frente) / Contracapa (Verso) -->
+            <div id="p3" class="paper" style="z-index: 1;">
+                <div class="front">
+                    <h2>Fim da Leitura</h2>
+                    <p>Você chegou ao final do exemplar interativo.</p>
+                    <span class="page-number">4</span>
+                </div>
+                <div class="back cover-back">
+                    <!-- Contracapa do Livro -->
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        // TypeScript/JSDoc para controle de estado do livro 3D
+        class Book3DEngine {
+            constructor() {
+                this.book = document.getElementById('book');
+                this.toggleBtn = document.getElementById('toggleBookBtn');
+                this.papers = [
+                    document.getElementById('p1'),
+                    document.getElementById('p2'),
+                    document.getElementById('p3')
+                ];
+                this.isOpen = false;
+                this.currentLocation = 0; // 0 = fechado, 1 = capa aberta, 2 = pag 1/2, etc.
+                this.maxLocation = this.papers.length;
+            }
+
+            // Abre ou Fechar o Livro totalmente
+            toggleOpen() {
+                if (this.isOpen) {
+                    this.closeBook(true);
+                } else {
+                    this.openBook();
+                }
+            }
+
+            openBook() {
+                this.isOpen = true;
+                this.book.classList.remove('closed');
+                this.toggleBtn.innerText = "Fechar Livro";
+                if (this.currentLocation === 0) {
+                    this.nextPage();
+                }
+            }
+
+            closeBook(atBeginning = true) {
+                this.isOpen = false;
+                this.toggleBtn.innerText = "Abrir Livro";
+                
+                // Reseta todas as páginas
+                this.papers.forEach((paper, index) => {
+                    paper.classList.remove('flipped');
+                    paper.style.zIndex = this.papers.length - index;
+                });
+
+                this.currentLocation = 0;
+                this.book.classList.add('closed');
+            }
+
+            nextPage() {
+                if (!this.isOpen) this.openBook();
+
+                if (this.currentLocation < this.maxLocation) {
+                    const paper = this.papers[this.currentLocation];
+                    paper.classList.add('flipped');
+                    
+                    // Ajusta Z-Index para empilhamento correto ao virar
+                    setTimeout(() => {
+                        paper.style.zIndex = this.currentLocation + 1;
+                    }, 300);
+
+                    this.currentLocation++;
+
+                    // Se passou da última página, fecha o livro pelo verso
+                    if (this.currentLocation === this.maxLocation) {
+                        setTimeout(() => {
+                            this.book.classList.add('closed');
+                        }, 500);
+                    }
+                }
+            }
+
+            prevPage() {
+                if (this.currentLocation > 0) {
+                    if (this.currentLocation === this.maxLocation) {
+                        this.book.classList.remove('closed');
+                    }
+
+                    this.currentLocation--;
+                    const paper = this.papers[this.currentLocation];
+                    paper.classList.remove('flipped');
+                    paper.style.zIndex = this.papers.length - this.currentLocation;
+
+                    if (this.currentLocation === 0) {
+                        this.closeBook(true);
+                    }
+                }
+            }
+        }
+
+        const bookApp = new Book3DEngine();
+    </script>
+</body>
+</html>

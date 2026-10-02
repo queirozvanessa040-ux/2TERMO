@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema da Padaria</title>
+    <style>
+        :root {
+            --bg-color: #1e1e1e;
+            --card-bg: #252526;
+            --text-color: #d4d4d4;
+            --accent-color: #0e639c;
+            --accent-hover: #1177bb;
+            --border-color: #3c3c3c;
+            --success-color: #4ec9b0;
+            --warning-color: #ce9178;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            box-sizing: border-box;
+        }
+
+        main {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 2rem;
+            max-width: 450px;
+            width: 100%;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        h1 {
+            color: #fff;
+            text-align: center;
+            font-size: 1.5rem;
+            margin-top: 0;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 0.5rem;
+        }
+
+        .menu-options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            margin: 1.5rem 0;
+        }
+
+        button {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 0.75rem 1rem;
+            font-size: 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.2s;
+            font-weight: 600;
+        }
+
+        button:hover {
+            background-color: var(--accent-hover);
+        }
+
+        button.btn-exit {
+            background-color: #9a1515;
+        }
+        button.btn-exit:hover {
+            background-color: #c42525;
+        }
+
+        .panel {
+            background-color: #1a1a1a;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            padding: 1rem;
+            margin-top: 1.5rem;
+            min-height: 60px;
+        }
+
+        .panel h2 {
+            font-size: 1rem;
+            margin: 0 0 0.5rem 0;
+            color: var(--text-muted);
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        label {
+            font-size: 0.9rem;
+            color: #9cdcfe;
+        }
+
+        input {
+            background-color: #3c3c3c;
+            border: 1px solid var(--border-color);
+            color: #fff;
+            padding: 0.5rem;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        input:focus {
+            outline: 1px solid var(--accent-hover);
+        }
+
+        #output {
+            white-space: pre-line;
+            font-family: monospace;
+            font-size: 1.05rem;
+        }
+
+        .hidden {
+            display: none;
+        }
+        
+        .success-text { color: var(--success-color); }
+        .info-text { color: #569cd6; }
+        .string-text { color: var(--warning-color); }
+    </style>
+</head>
+<body>
+
+<main>
+    <header>
+        <h1>=== MENU DA PADARIA ===</h1>
+    </header>
+
+    <!-- Seção de Botões do Menu Principal -->
+    <nav class="menu-options" aria-label="Menu Principal">
+        <button onclick="mostrarVenda()">1. Calcular Venda</button>
+        <button onclick="verHorario()">2. Ver Horário de Funcionamento</button>
+        <button onclick="sairSistema()" class="btn-exit">3. Sair</button>
+    </nav>
+
+    <!-- Formulário Dinâmico da Opção 1 (Calcular Venda) -->
+    <section id="vendaForm" class="hidden">
+        <div class="form-group">
+            <label for="preco">Preço do produto (R$):</label>
+            <input type="number" id="preco" step="0.01" min="0" placeholder="0.00">
+        </div>
+        <div class="form-group">
+            <label for="qtd">Quantidade:</label>
+            <input type="number" id="qtd" min="1" placeholder="0">
+        </div>
+        <button onclick="executarCalculo()">Calcular Total</button>
+    </section>
+
+    <!-- Console de Saída dos Resultados -->
+    <section class="panel" aria-live="polite">
+        <h2>Console de Saída:</h2>
+        <div id="output"><span class="info-text">Aguardando comando...</span></div>
+    </section>
+</main>
+
+<script>
+    // Seleção de elementos do HTML
+    const output = document.getElementById('output');
+    const vendaForm = document.getElementById('vendaForm');
+    const inputPreco = document.getElementById('preco');
+    const inputQtd = document.getElementById('qtd');
+
+    // Opção 1: Abre os campos de inputs para simular o "question" do terminal
+    function mostrarVenda() {
+        output.innerHTML = '<span class="info-text">Insira os valores acima para calcular...</span>';
+        vendaForm.classList.remove('hidden');
+        inputPreco.focus();
+    }
+
+    // Processa os dados recolhidos nos inputs (Equivalente ao bloco if (opcao === 1))
+    function executarCalculo() {
+        const preco = parseFloat(inputPreco.value);
+        const qtd = parseInt(inputQtd.value);
+
+        if (isNaN(preco) || isNaN(qtd) || preco < 0 || qtd <= 0) {
+            output.innerHTML = '<span style="color: #f85149;">Por favor, insira valores válidos!</span>';
+            return;
+        }
+
+        const total = (preco * qtd).toFixed(2);
+        output.innerHTML = `Total: <span class="success-text">R$ ${total}</span>`;
+        
+        // Limpa os campos após o cálculo
+        inputPreco.value = '';
+        inputQtd.value = '';
+        vendaForm.classList.add('hidden');
+    }
+
+    // Opção 2: Equivalente ao else if (opcao === 2)
+    function verHorario() {
+        vendaForm.classList.add('hidden');
+        output.innerHTML = '<span class="string-text">Funcionamos das 07h as 22h.</span>';
+    }
+
+    // Opção 3: Equivalente ao else if (opcao === 3)
+    function sairSistema() {
+        vendaForm.classList.add('hidden');
+        output.innerHTML = '<span style="color: #9a1515;">Saindo do sistema... Tela finalizada.</span>';
+    }
+</script>
+
+</body>
+</html>

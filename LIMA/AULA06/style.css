@@ -1,0 +1,15 @@
+h1 {
+    font-weight: 600;
+    text-align: center;
+    border: red 1px solid ;
+    border-radius: 20px;
+    background-color: rgb(253, 185, 96);
+}
+
+p {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 20px;
+    font-weight: 40px bolder;
+    margin: 60px;
+    padding: 10px;
+}

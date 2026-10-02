@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Empresa DevSolutions</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #ececec;
+        }
+        header {
+            font-weight: 700;
+            font-size: 50px;
+            text-align: center;
+            border: rgb(81, 96, 165) 1px solid;
+            background-color: rgb(81, 96, 165);
+            color: white;
+            padding: 20px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        header p {
+            font-size: 20px;
+            font-weight: normal;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        header h1 {
+            text-align: center;
+            margin: 0;
+            color: white;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            text-align: center;
+        }
+        li {
+            display: inline-block;
+            margin: 0 15px;
+            text-decoration: none;
+        }
+        li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+        }
+        li a:hover {
+            color: #d1d5db;
+        }
+        main {
+            padding: 20px;
+            margin: 10px;
+        }
+        .card-container {
+            border: #d1d5db 3px solid;
+            border-radius: 0px;
+            margin-bottom: 20px;
+            padding: 20px;
+            background-color: white;
+            scroll-margin-top: 180px; 
+        }
+        .card-container h1 {
+            text-align: center;
+            display: block;
+        }
+        
+        .card-container img {
+            display: block;
+            margin: 0 auto 20px auto;
+            max-width: 100%;
+            height: auto;
+        }
+        .card-container article {
+            text-align: center;
+        }
+        .card-container h4 {
+            font-family: Arial, Helvetica, sans-serif;
+            color: blue;
+        }
+        h1 {
+            font-family: Arial, Helvetica, sans-serif;
+            color: rgb(45, 45, 165);
+        }
+        .card-container h3 {
+            border: #c5d6f0 solid 4px;
+            border-bottom: none;
+            background-color: #c5d6f0;
+            margin-bottom: 0;
+            padding: 10px;
+        }
+        .card-container h3 + p {
+            border: #c5d6f0 solid 4px;
+            border-top: none;
+            background-color: #c5d6f0;
+            margin-top: 0;
+            margin-bottom: 20px;
+            padding: 10px;
+        }
+        .card-container h3 a {
+            display: block;
+            font-size: 16px;
+            font-weight: normal;
+            margin-bottom: 5px;
+            color: blue;
+        }
+        footer {
+            text-align: center;
+            border: rgb(81, 96, 165) 1px solid;
+            background-color: rgb(81, 96, 165);
+            color: white;
+            padding: 20px;
+        }
+        button {
+            background-color: rgb(81, 96, 165);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>DevSolutions</h1>
+        <p>Tecnologia, inovação e soluções digitais</p>
+        <nav>
+            <ul>
+                <li><a href="#inicio">Início</a></li>
+                <li><a href="#sobre">Sobre</a></li>
+                <li><a href="#servicos">Serviços</a></li>
+                <li><a href="#equipe">Equipe</a></li>
+                <li><a href="#projetos">Projetos</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="inicio" class="card-container">
+            <h1>Bem-vindo à DevSolutions</h1>
+            <img src="https://unsplash.com" alt="Equipe de tecnologia trabalhando">
+            <article>
+                Somos uma empresa especializada em desenvolvimento de soluções digitais para empresas e profissionais. <br>
+                Transformando ideias em projetos utilizando tecnologia e inovação.
+            </article>
+        </section>
+
+        <section id="sobre" class="card-container">
+            <h1>Sobre a DevSolutions</h1>
+            <article>
+                A DevSolutions é uma empresa fictícia criada para o desenvolvimento deste projeto acadêmico. <br>
+                Nosso objetivo é desenvolver soluções tecnológicas simples, eficientes e inovadoras.
+            </article>
+            <article>
+                <h4>Nossa Missão</h4>
+                Utilizar a tecnologia para solucionar problemas reais e melhorar processos.
+            </article>
+        </section>
+
+        <section id="servicos" class="card-container">
+            <h1>Nossos Serviços</h1>
+            <h3>Desenvolvimento Web</h3>
+            <p>Criação de sites e aplicações Web utilizando tecnologias modernas.</p>
+            <h3>Desenvolvimento de Sistemas</h3>
+            <p>Desenvolvimento de sistemas personalizados para empresas.</p>
+            <h3>Banco de Dados</h3>
+            <p>Modelagem, organização e gerenciamento de banco de dados.</p>
+            <h3>Consultoria em Tecnologia</h3>
+            <p>Orientação para empresas que desejam utilizar melhor seus recursos tecnológicos.</p>
+        </section>
+
+        <section id="equipe" class="card-container">
+            <h1>Nossa Equipe</h1>
+            <h3>
+                <a href="https://unsplash.com">Foto de Ana Souza</a> Ana Souza
+            </h3>
+            <p>Desenvolvedora Front-End <br> Especialista em criação de interfaces Web.</p>
+            <h3>
+                <a href="https://unsplash.com">Foto de Carlos Oliveira</a> Carlos Oliveira
+            </h3>
+            <p>Desenvolvedor Back-End <br> Atua no desenvolvimento de sistemas e APIs.</p>
+            <h3>
+                <a href="https://istockphoto.com">Foto de Marina Lima</a> Marina Lima
+            </h3>
+            <p>Analista de Banco de Dados <br> Responsável pela organização e gerenciamento de dados.</p>
+        </section>
+
+        <section id="projetos" class="card-container">
+            <h1>Nossos Projetos</h1>
+            <article>
+                <h3><a href="#">Sistema de Vendas</a> Sistema de Vendas</h3>
+                <p>Sistema desenvolvido para gerenciamento de vendas, clientes e produtos.</p>
+                <h3><a href="#">Aplicativo Empresarial</a> Aplicativo Empresarial</h3>
+                <p>Aplicativo desenvolvido para facilitar processos internos de uma empresa.</p>
+                <h3><a href="#">Site Institucional</a> Site Institucional</h3>
+                <p>Site desenvolvido para apresentar uma empresa e seus serviços.</p>
+            </article>
+        </section>
+
+        <section id="contato" class="card-container">
+            <h1>Entre em Contato</h1>
+            <address>
+                Entre em contato conosco para saber mais sobre nossos serviços. <br><br>
+                📷 E-mail: <a href="mailto:contato@devsolutions.com">contato@devsolutions.com</a> <br>
+                📞 Telefone: (11) 99999-9999 <br>
+                📍 Endereço: São Paulo - SP <br><br>
+                <a href="#">GitHub</a> <br>
+                <a href="#">LinkedIn</a> <br><br>
+                <button>Solicitar Orçamento</button>
+            </address>
+        </section>
+    </main>
+
+    <footer>
+        &copy; 2026 DevSolutions. Todos os direitos reservados. <br>
+        Projeto acadêmico HTML + CSS
+    </footer>
+
+</body>
+</html>
+>

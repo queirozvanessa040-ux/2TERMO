@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "nome": "Torta de Morango",
+    "qtde": 45
+  },
+  {
+    "id": 2,
+    "nome": "Iogurte",
+    "qtde": 12
+  },
+  {
+    "id": 3,
+    "nome": "Cocada Doce",
+    "qtde": 15
+  }
+  {
+    "id": 4,
+    "nome": "Bolo de Pistache",
+    "qtde": 250
+  }
+]

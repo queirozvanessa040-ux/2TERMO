@@ -1,0 +1,17 @@
+[
+  {
+    "id": 1,
+    "nome": "Parafuso",
+    "qtde": 100
+  },
+  {
+    "id": 2,
+    "nome": "Porca",
+    "qtde": 250
+  },
+  {
+    "id": 3,
+    "nome": "Arruela",
+    "qtde": 50
+  }
+]

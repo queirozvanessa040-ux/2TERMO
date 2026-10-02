@@ -1,0 +1,7 @@
+[
+    { "id": 101, "nome": "Ana", "setor": "Usinagem" }
+    { "id": 102, "nome": "Maria", "setor": "Cozinheira" }
+    { "id": 103, "nome": "Roberto", "setor": "Inspetor" }
+    { "id": 104, "nome": "Carlos", "setor": "Limpeza" }
+    { "id": 105, "nome": "Karina", "setor": "Profesora" }
+]
