@@ -1,0 +1,38 @@
+/* EXERCICIO 02- ESPACE */
+
+/* .equipe {
+  display: flex;
+  gap: 30px;
+
+/* <!-- EXERCICIO 03 - DISTRIBUA --> */
+
+  /* justify-content: flex-start; */
+  /* Alinha*/
+  /* justify-content: center; */
+  /* Coloca-o no centro */
+  /* justify-content: flex-end; */
+  /* Deixou para o lado direito */
+  /* justify-content: space-between; */
+  /* Deixou cada li espaçado */
+  /* justify-content: space-evenly; */
+  /* Colocado na borda ao centro 
+  }*/
+
+/* <!-- EXERCICIO 04 - ALINHE --> */
+
+/* .container-alinhar {
+  display: flex;
+  gap: 30;
+  /* align-items: flex-start; */
+  /* align-items: center; */
+  /* align-items: flex-end; */
+  /* padding: 90px 8%;
+} */
+
+/* <!-- EXERCICIO 05 - CORRIJA O LAYOUT --> */
+
+.cards {
+display: flex;
+gap: 20px;
+list-style: none;
+}
