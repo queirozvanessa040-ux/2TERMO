@@ -44,6 +44,10 @@ SELECT nome, cidade
 FROM cliente
 WHERE cidade = 'Limeira' OR cidade = 'Piracicaba';
 
+SELECT nome, cidade
+FROM cliente
+WHERE cidade IN ('Limeira', 'Americana');
+
 -- 8. Localize os produtos cujo nome contém a palavra “Café”.
 SELECT nome
 FROM produto
@@ -54,11 +58,15 @@ SELECT nome, telefone
 FROM cliente
 WHERE telefone IS NULL;
 
+SELECT nome, COALESCE(telefone, 'Não Informado') 
+FROM cliente AS telefone 
+WHERE telefone IS NULL;
+
 -- 10. Mostre os pedidos FINALIZADOS com valor acima de R$ 20,00,
 --     do maior para o menor valor.
-SELECT id_pedido,
+SELECT *
 FROM pedido
-WHERE status = 'FINALIZADOS' AND preco >= 5.00;
+WHERE status = 'FINALIZADOS' AND valor_total >= 5.00 ORDER BY valor_total DESC;
 
 -- PARTE C - CÁLCULOS E AGRUPAMENTOS
 
@@ -70,6 +78,8 @@ FROM produto;
 SELECT MIN(preco) AS MENOR_PRECO, MAX(preco) AS
 MÉDIA_PREÇO
 FROM produto;
+
+SELECT MIN(preco) AS menor_preco, MAX(preco) AS maior_preco, ROUND(AVG(preco), 2) AS média_preco FROM produto;
 
 -- 13. Informe quantos clientes existem em cada cidade.
 SELECT cidade, COUNT(*) AS CLIENTES_CIDADE 
@@ -83,6 +93,6 @@ GROUP BY cidade
 HAVING COUNT(*) >= 2;
 
 -- 15. Calcule o faturamento total considerando apenas pedidos FINALIZADOS.
-SELECT SUM(pedido) AS Faturamento_Total
+SELECT SUM(valor_total) AS Total
 FROM pedido
 WHERE status = 'FINALIZADO'
