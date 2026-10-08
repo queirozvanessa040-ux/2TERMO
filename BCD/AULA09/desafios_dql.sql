@@ -28,7 +28,7 @@ ORDER BY preco ASC;
 -- 5. Mostre apenas os 5 produtos mais caros.
 SELECT nome, preco 
 FROM produto
-ORDER BY preco DESC 
+ORDER BY preco ASC
 LIMIT 5;
 
 
