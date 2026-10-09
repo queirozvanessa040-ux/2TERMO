@@ -2,6 +2,6 @@
   "dependencies": {
     "fs": "^0.0.1-security",
     "readline-sync": "^1.4.10",
-    "require": "^2.4.20"
+    "require": "^0.4.4"
   }
 }
