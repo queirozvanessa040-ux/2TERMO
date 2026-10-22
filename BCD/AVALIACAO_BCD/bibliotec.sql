@@ -2,11 +2,11 @@
 -- SISTEMA - GERENCIAMENTE DE BIBLIOTECA
 
 -- FASE 1 - DDL: CRIAÇÃO E ESTRUTURA
+DROP DATABASE IF EXISTS biblioteca_som2;
+
 CREATE DATABASE IF NOT EXISTS biblioteca_som2;
 
 USE biblioteca_som2;
-
-DROP DATABASE IF EXISTS biblioteca_som2;
 
 CREATE TABLE Usuario (
     Id_Usuario INT PRIMARY KEY AUTO_INCREMENT,
@@ -47,8 +47,6 @@ INSERT INTO Usuario (nome, email, telefone, ativo) VALUES
 ('Anasthacia Silva', 'nastachia@email', '19999345678', TRUE),
 ('Guilherme Anjos', 'guilherme@email', NULL, TRUE);
 
-
-
 INSERT INTO Livro (titulo, autor, Isbn, Ano_publicacao, Quantidade_Disponivel, Editora) VALUES 
 ('Percy Jackson (O Ladrão de Raios)', 'Rick Riordan', '9788580575392', 2005, 30, 'Intrínseca'),
 ('Diários do Vampiro (O Despertar - Vol. 1)', 'L. J. Smith', '9788501086150', 1991, 27, 'Galera Record'),
@@ -57,10 +55,10 @@ INSERT INTO Livro (titulo, autor, Isbn, Ano_publicacao, Quantidade_Disponivel, E
 ('A Hipótese do Amor', 'Ali Hazelwood', '9786555653304', 2021, 9, 'Arqueiro'),
 ('It: A Coisa', 'Stephen King', '9788560280940', 1986, 20, 'Suma');
 
-INSERT INTO Emprestimo (Id_Usuario, Id_Livro, Data_Prevista) VALUES
-(1, 1, '2026-11-05'),
-(2, 5, '2026-11-05'), 
-(3, 3, '2026-11-05');
+INSERT INTO Emprestimo (Id_Usuario, Id_Livro, Data_Prevista, Status_Emprestimo) VALUES
+(1, 1, '2026-11-05', 'ABERTO'),
+(2, 5, '2026-11-05', 'ABERTO'), 
+(3, 3, '2026-11-05', 'ATRASADO');
 
 
 SELECT * FROM Usuario WHERE nome LIKE '%Guilherme Anjos%';
@@ -80,7 +78,156 @@ DELETE FROM Usuario WHERE email = 'teste@email.com';
 SELECT Titulo, Autor, Quantidade_Disponivel
 FROM Livro;
 
+SELECT * 
+FROM Livro 
+WHERE Quantidade_Disponivel > 2 
+ORDER BY Quantidade_Disponivel DESC;
 
+SELECT *
+FROM Livro  
+WHERE Titulo LIKE '%Diário%';
+
+SELECT *
+FROM Livro 
+WHERE Ano_publicacao BETWEEN 2015 AND 2025;
+
+SELECT
+    COUNT(*) AS Total_Livros,
+    SUM(Quantidade_Disponivel) AS Total_Estoque,
+    AVG(Quantidade_Disponivel) AS Media,
+    MIN(Quantidade_Disponivel) AS Menor_Estoque,
+    MAX(Quantidade_Disponivel) AS Maior_Estoque
+FROM Livro;
+
+SELECT
+    E.Id_Emprestimo,
+    U.nome AS Nome_Usuario,
+    L.Titulo AS Titulo_Livro,
+    E.Data_Emprestimo,
+    E.Status_Emprestimo
+FROM Emprestimo E
+INNER JOIN Usuario U ON E.Id_Usuario = U.Id_Usuario
+INNER JOIN Livro L ON E.Id_Livro = L.Id_Livro;
+
+SELECT
+    E.Id_Emprestimo,
+    U.nome AS Nome_Usuario,
+    L.Titulo AS Titulo_Livro,
+    E.Data_Emprestimo,
+    E.Status_Emprestimo
+FROM Emprestimo E
+INNER JOIN Usuario U ON E.Id_Usuario = U.Id_Usuario
+INNER JOIN Livro L ON E.Id_Livro = L.Id_Livro
+WHERE E.Status_Emprestimo = 'ABERTO';
+
+SELECT 
+    U.nome AS Nome_Usuario,
+    COUNT(E.Id_Emprestimo) AS Total_Emprestimos
+FROM Emprestimo E
+INNER JOIN Usuario U ON E.Id_Usuario = U.Id_Usuario
+GROUP BY U.Id_Usuario, U.nome
+ORDER BY Total_Emprestimos DESC;
+
+SELECT 
+    U.nome AS Nome_Usuario,
+    COUNT(E.Id_Emprestimo) AS Total_Emprestimos
+FROM Usuario U
+LEFT JOIN Emprestimo E ON U.Id_Usuario = E.Id_Usuario
+GROUP BY U.Id_Usuario, U.nome
+ORDER BY Total_Emprestimos DESC;
 
 -- FASE 4 - TCL, TRANSAÇÕES E INTEGRIDADE
+START TRANSACTION;
+INSERT INTO Emprestimo (Id_Usuario, Id_Livro, Data_Prevista, Status_Emprestimo) 
+VALUES (4, 2, '2026-11-15', 'ABERTO');
+UPDATE Livro 
+SET Quantidade_Disponivel = Quantidade_Disponivel - 1 
+WHERE Id_Livro = 2;
+SELECT * FROM Emprestimo WHERE Id_Emprestimo = 4;
+SELECT * FROM Livro WHERE Id_Livro = 2;
+COMMIT;
+
+START TRANSACTION;
+UPDATE Livro 
+SET Quantidade_Disponivel = 99
+WHERE Id_Livro = 2;
+SELECT * FROM Livro WHERE Id_Livro = 1;
+ROLLBACK;
+
+START TRANSACTION;
+UPDATE Livro
+SET Titulo = 'O Mar dos Monstros',
+    Quantidade_Disponivel = 20;
+SELECT * FROM Livro WHERE Id_Livro = 1;
+SELECT * FROM Livro WHERE Id_Livro = 3;
+
+
+-- 24 Não feita :')
+
+START TRANSACTION;
+
+
+
+
+
+
+START TRANSACTION;
+
+
+-- DESAFIO FINAL
+
+-- Constraint.
+-- Constraint.
+-- Constraint.
+-- Integridade Referencial.
+-- Integridade Referencial.
+-- Transação.
+-- Regra da Aplicação.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

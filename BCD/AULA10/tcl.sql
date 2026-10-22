@@ -95,7 +95,8 @@ CREATE TABLE estoque (
     CONSTRAINT pk_estoque_produto UNIQUE (id_produto),
     -- CHECAR OU VALIDAR UMA OPERAÇÃO DE QUANTIDADE
     CONSTRAINT pk_estoque_quantidade CHECK (quantidade >= 0),
-    -- CHAVE ESTRANGEIRA
+    -- CHAVE ESTRANGE
+    IRA
     CONSTRAINT pk_estoque_produto FOREIGN KEY (id_produto)
     REFERENCES produto (id_produto) ON UPDATE CASCADE ON DELETE RESTRICT
 );
