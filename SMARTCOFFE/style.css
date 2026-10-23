@@ -1,47 +1,459 @@
-:root {
-    --cinza: #D9D9D9;
-    --bege: #D4C5AD;
-    --marrom-rosado: #805B54;
-    --bege-rosado: #DBC6B7;
-    --marrom-acinzentado: #816B62;
-    --marrom-claro: #9C7264;
-    --marrom-escuro: #6C4D46;
-    --vinho: #531E1A;
-    --creme: #F3E9DB;
-    --terracota: #A84526;
+/* RESET E ESTILOS GERAIS */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #8c6a5e; /* Tom bege/marrom de fundo geral */
+    color: #333333;
 }
 
-h1 {
-    font-family: "Lobster", sans-serif;
-}
-
-.Comecado {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    gap: 30px;
-    list-style: none;
-    padding: 0;
+figure {
     margin: 0;
 }
 
+main {
+    width: min(1100px, calc(100% - 40px));
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* ----------------------------------
+   1. CABEÇALHO
+---------------------------------- */
 header {
-    background-color: var(--marrom-escuro);
+    background-color: #634335;
+    padding: 10px 20px;
 }
 
-img {
-
+.topo-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
 }
 
-span:first-child {
-    color: #9C7264;
+.logo {
+    color: #fcebd9;
+    font-size: 1.8rem;
+    margin: 0;
+    font-family: 'Georgia', serif;
 }
 
-span:last-child {
-    color: #531E1A;
+.menu-principal {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
 }
 
-body {
-    background-color: var(--creme);
+.menu-principal a {
+    color: #ffffff;
+    background-color: #d1a884;
+    text-decoration: none;
+    padding: 6px 16px;
+    border-radius: 15px;
+    font-size: 0.9rem;
+    font-weight: bold;
 }
 
+.menu-principal a:hover {
+    background-color: #b58a66;
+}
+
+.idioma {
+    background-color: #2b5722;
+    color: #ffffff;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+}
+
+.barra-busca {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.btn-menu {
+    background: #d1a884;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.form-busca {
+    flex: 1;
+}
+
+.form-busca input {
+    width: 100%;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-sizing: border-box;
+}
+
+.faixa-ofertas {
+    background-color: #a82e16; /* Faixa vermelha da imagem */
+    color: #ffffff;
+    text-align: center;
+    padding: 6px;
+    margin-top: 10px;
+    font-weight: bold;
+    font-size: 0.85rem;
+}
+
+.faixa-ofertas p {
+    margin: 0;
+}
+
+/* ----------------------------------
+   2. BANNERS DA PARTE SUPERIOR (4 CARDS)
+---------------------------------- */
+.grid-banners {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+}
+
+.card-banner img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 6px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+/* ----------------------------------
+   3. SEÇÃO "SEU CAFÉ... SEU MOMENTO"
+---------------------------------- */
+.banner-momento {
+    background-color: #d2c8c0;
+    padding: 25px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 20px;
+    border-radius: 4px;
+}
+
+.texto-momento h2 {
+    margin: 0;
+    font-size: 1.8rem;
+    color: #222;
+}
+
+.texto-momento h3 {
+    margin: 10px 0 0 0;
+    font-size: 2.2rem;
+    color: #000;
+}
+
+.imagem-momento img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+/* ----------------------------------
+   4. TAGS ESTILIZADAS PARA OS TÍTULOS
+---------------------------------- */
+.tag-titulo {
+    display: inline-block;
+    background-color: #d1a884;
+    color: #3d2314;
+    padding: 6px 16px;
+    border-radius: 12px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.tag-titulo.centralizada {
+    display: table;
+    margin: 0 auto 20px auto;
+}
+
+/* ----------------------------------
+   5. SOBRE NÓS
+---------------------------------- */
+.secao-sobre {
+    background-color: #d9c4b1;
+    padding: 25px;
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 25px;
+    border-radius: 4px;
+}
+
+.conteudo-sobre p {
+    line-height: 1.6;
+    margin-bottom: 12px;
+}
+
+.btn-ver-mais {
+    display: inline-block;
+    background-color: #c49a72;
+    color: #3d2314;
+    text-decoration: none;
+    padding: 8px 18px;
+    border-radius: 12px;
+    font-size: 0.9rem;
+    margin-top: 10px;
+}
+
+.imagem-sobre img {
+    width: 100%;
+    height: 100%;
+    min-height: 200px;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+/* ----------------------------------
+   6. CARDÁPIO
+---------------------------------- */
+.secao-cardapio {
+    background-color: #634335;
+    padding: 25px;
+    border-radius: 4px;
+    color: #fff;
+}
+
+.abas-cardapio {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.aba {
+    background-color: #c49a72;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 6px 14px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+}
+
+.aba.ativa {
+    background-color: #ffffff;
+    color: #634335;
+    font-weight: bold;
+}
+
+.layout-cardapio {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    gap: 20px;
+}
+
+.grid-produtos {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+}
+
+.card-produto img {
+    width: 100%;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 4px;
+    background-color: #ddd;
+}
+
+.painel-lateral-cardapio img {
+    width: 100%;
+    height: 100%;
+    min-height: 212px;
+    object-fit: cover;
+    border-radius: 4px;
+    border: 2px solid #000;
+}
+
+/* ----------------------------------
+   7. AMBIENTE
+---------------------------------- */
+.secao-ambiente {
+    background-color: #d9c4b1;
+    padding: 25px;
+    border-radius: 4px;
+}
+
+.layout-ambiente {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.card-localizacao {
+    background-color: #e6e6e6;
+    padding: 15px;
+    border-radius: 12px;
+}
+
+.card-localizacao h3 {
+    margin-top: 0;
+    text-align: center;
+}
+
+.mapa-container {
+    position: relative;
+}
+
+.mapa-container img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.zoom-controles {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 4px 8px;
+    font-weight: bold;
+    border-radius: 4px;
+}
+
+.grid-fotos-ambiente {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.foto-ambiente img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+.secao-contato {
+    background-color: #634335;
+    padding: 25px;
+    border-radius: 4px;
+    color: #ffffff;
+}
+
+.grid-contato {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+}
+
+.bloco-horarios {
+    background-color: #fff8ee;
+    color: #333;
+    padding: 15px;
+    border-radius: 12px;
+}
+
+.bloco-horarios h3 {
+    margin-top: 0;
+    background-color: #a35d33;
+    color: #fff;
+    padding: 6px;
+    text-align: center;
+    border-radius: 6px;
+}
+
+.bloco-horarios ul {
+    padding-left: 20px;
+    line-height: 1.8;
+}
+
+.bloco-parceiros h4 {
+    margin-top: 0;
+    text-align: center;
+}
+
+.logos-parceiros {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 15px;
+}
+
+.logo-parceiro {
+    width: 35px;
+    height: 35px;
+    background-color: #d1a884;
+    border-radius: 4px;
+}
+
+.botoes-contato {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.botoes-contato a {
+    background-color: #c49a72;
+    color: #3d2314;
+    text-decoration: none;
+    text-align: center;
+    padding: 8px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: bold;
+}
+
+footer {
+    background-color: #4a150b;
+    padding: 15px 20px;
+}
+
+.conteudo-rodape {
+    width: min(1100px, calc(100% - 40px));
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-rodape {
+    color: #fcebd9;
+    margin: 0;
+    font-size: 1.4rem;
+    font-family: 'Georgia', serif;
+}
+
+.redes-sociais {
+    display: flex;
+    gap: 10px;
+}
+
+.redes-sociais a {
+    text-decoration: none;
+    font-size: 1.3rem;
+}
+
+@media (max-width: 768px) {
+    .grid-banners,
+    .banner-momento,
+    .secao-sobre,
+    .layout-cardapio,
+    .grid-produtos,
+    .layout-ambiente,
+    .grid-contato {
+        grid-template-columns: 1fr;
+    }
+
+    .topo-header,
+    .conteudo-rodape {
+        flex-direction: column;
+        align-items: stretch;
+        text-align: center;
+    }
+
+    .menu-principal {
+        justify-content: center;
+    }
+}

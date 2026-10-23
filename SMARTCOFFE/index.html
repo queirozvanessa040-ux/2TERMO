@@ -1,28 +1,197 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-pt-BR">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartCoffe - Cafeteria</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Isometra&family=Lobster&display=swap" rel="stylesheet">
-    <title>SmartCoffe</title>
 </head>
 <body>
-    <header class="Cabec">
-        <h1>
-        <span>Smart</span><span>Coffe</span>
-        </h1>
-        <img src="" alt="logo">
-        <ul class="Comecado">
-            <li><a href="#inicio">Inicio</a></li>
-            <li><a href="#sobre">Sobre</a></li>
-            <li><a href="#cardapio">cardapio</a></li>
-            <li><a href="#ambiente">Ambiente</a></li>
-            <li><a href="#contato">Contato</a></li>
-        </ul>  
+
+    <!-- CABEÇALHO -->
+    <header>
+        <section class="topo-header">
+            <h1 class="logo">SmartCoffe ☕</h1>
+            <nav class="menu-principal">
+                <a href="#inicio">Início</a>
+                <a href="#sobre">Sobre</a>
+                <a href="#cardapio">Cardápio</a>
+                <a href="#ambiente">Ambiente</a>
+                <a href="#contato">Contato</a>
+            </nav>
+            <span class="idioma">🇧🇷 PT</span>
+        </section>
+
+        <section class="barra-busca">
+            <button type="button" class="btn-menu">☰</button>
+            <form action="#" class="form-busca">
+                <input type="search" placeholder="Pesquisar...">
+            </form>
+        </section>
+
+        <section class="faixa-ofertas">
+            <p>Ofertas e Promoções</p>
+        </section>
     </header>
-    
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <main>
+
+        <!-- SEÇÃO: BANNERS DE DESTAQUE SUPERIOR (4 CARDS) -->
+        <section class="grid-banners">
+            <article class="card-banner">
+                <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=400" alt="Café Especial">
+            </article>
+            <article class="card-banner">
+                <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=400" alt="Grãos Selecionados">
+            </article>
+            <article class="card-banner">
+                <img src="https://images.unsplash.com/photo-1517256064527-09c73fc73e38?w=400" alt="Métodos de Preparo">
+            </article>
+            <article class="card-banner">
+                <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=400" alt="Doces e Acompanhamentos">
+            </article>
+        </section>
+
+        <!-- SEÇÃO: SEU CAFÉ... SEU MOMENTO -->
+        <section class="banner-momento" id="inicio">
+            <article class="texto-momento">
+                <h2>Seu Café...</h2>
+                <h3>Seu Momento</h3>
+            </article>
+            <figure class="imagem-momento">
+                <img src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=600" alt="Momento do Café">
+            </figure>
+        </section>
+
+        <!-- SEÇÃO: SOBRE NÓS -->
+        <section class="secao-sobre" id="sobre">
+            <article class="conteudo-sobre">
+                <span class="tag-titulo">Sobre Nós</span>
+                <p>
+                    O SmartCoffe é um espaço dedicado aos amantes de cafés de alta qualidade.
+                    Nossos grãos são rigorosamente selecionados das melhores fazendas do país,
+                    garantindo um aroma inconfundível e um sabor equilibrado a cada xícara.
+                </p>
+                <p>
+                    Venha vivenciar uma experiência sensorial completa em um ambiente aconchegante,
+                    perfeito para trabalhar, conversar ou simplesmente relaxar.
+                </p>
+                <a href="#cardapio" class="btn-ver-mais">Ver mais...</a>
+            </article>
+            <figure class="imagem-sobre">
+                <img src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?w=600" alt="Sobre o SmartCoffe">
+            </figure>
+        </section>
+
+        <!-- SEÇÃO: CARDÁPIO -->
+        <section class="secao-cardapio" id="cardapio">
+            <span class="tag-titulo">☕ Cardápio</span>
+
+            <!-- CATEGORIAS / ABAS -->
+            <nav class="abas-cardapio">
+                <a href="#" class="aba ativa">Espressos</a>
+                <a href="#" class="aba">Gelados</a>
+                <a href="#" class="aba">Especiais</a>
+                <a href="#" class="aba">Salgados</a>
+                <a href="#" class="aba">Doces</a>
+            </nav>
+
+            <section class="layout-cardapio">
+                <!-- GRADE COM 8 ITENS DO CARDÁPIO -->
+                <section class="grid-produtos">
+                    <article class="card-produto"><img src="https://images.unsplash.com/photo-1510591509098-f4fdc6d0ff04?w=250" alt="Item 1"></article>
+                    <article class="card-produto"><img src="https://images.unsplash.com/photo-1572442388796-11668a67e53d?w=250" alt="Item 2"></article>
+                    <article class="card-produto"><img src="https://images.unsplash.com/photo-1534778101976-62847782c213?w=250" alt="Item 3"></article>
+                    <article class="card-produto"><img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=250" alt="Item 4"></article>
+                    <article class="card-produto"><img src="https://images.unsplash.com/photo-1507133750040-4a8f57021571?w=250" alt="Item 5"></article>
+                    <article class="card-produto"><img src="https://images.unsplash.com/photo-1517701604599-bb29b565090c?w=250" alt="Item 6"></article>
+                    <article class="card-produto"><img src="https://images.unsplash.com/photo-1541167760496-1628856ab772?w=250" alt="Item 7"></article>
+                    <article class="card-produto"><img src="https://images.unsplash.com/photo-1551024709-8f23befc6f87?w=250" alt="Item 8"></article>
+                </section>
+
+                <!-- BANNER LATERAL DO CARDÁPIO -->
+                <aside class="painel-lateral-cardapio">
+                    <img src="https://images.unsplash.com/photo-1497636577773-f1231844b336?w=400" alt="Destaque do Cardápio">
+                </aside>
+            </section>
+        </section>
+
+        <!-- SEÇÃO: AMBIENTE -->
+        <section class="secao-ambiente" id="ambiente">
+            <span class="tag-titulo centralizada">Ambiente</span>
+
+            <section class="layout-ambiente">
+                <!-- LOCALIZAÇÃO / MAPA -->
+                <article class="card-localizacao">
+                    <h3>Localizações</h3>
+                    <figure class="mapa-container">
+                        <img src="https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?w=500" alt="Mapa de Localização">
+                        <span class="zoom-controles">+ | -</span>
+                    </figure>
+                </article>
+
+                <!-- GRADE DE FOTOS DO AMBIENTE (4 FOTOS) -->
+                <section class="grid-fotos-ambiente">
+                    <figure class="foto-ambiente"><img src="https://images.unsplash.com/photo-1453614512568-c4024d13c247?w=300" alt="Foto 1"></figure>
+                    <figure class="foto-ambiente"><img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=300" alt="Foto 2"></figure>
+                    <figure class="foto-ambiente"><img src="https://images.unsplash.com/photo-1559925393-8be0ec4767c8?w=300" alt="Foto 3"></figure>
+                    <figure class="foto-ambiente"><img src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?w=300" alt="Foto 4"></figure>
+                </section>
+            </section>
+        </section>
+
+        <!-- SEÇÃO: CONTATO -->
+        <section class="secao-contato" id="contato">
+            <section class="grid-contato">
+                <!-- COLUNA 1: DADOS DE CONTATO -->
+                <article class="bloco-contato">
+                    <span class="tag-titulo">📞 Contato</span>
+                    <p>Entre em contato conosco para reservas, eventos ou dúvidas.</p>
+                    <p><strong>Telefone:</strong> (11) 3333-4444</p>
+                    <p><strong>E-mail:</strong> contato@smartcoffe.com.br</p>
+                </article>
+
+                <!-- COLUNA 2: HORÁRIOS DE FUNCIONAMENTO -->
+                <article class="bloco-horarios">
+                    <h3>Horários</h3>
+                    <ul>
+                        <li>Segunda a Sexta: 07h - 20h</li>
+                        <li>Sábados: 08h - 21h</li>
+                        <li>Domingos e Feriados: 08h - 18h</li>
+                    </ul>
+                </article>
+
+                <!-- COLUNA 3: PARCEIROS E BOTÕES -->
+                <article class="bloco-parceiros">
+                    <h4>Nossos Parceiros</h4>
+                    <section class="logos-parceiros">
+                        <figure class="logo-parceiro"></figure>
+                        <figure class="logo-parceiro"></figure>
+                        <figure class="logo-parceiro"></figure>
+                        <figure class="logo-parceiro"></figure>
+                    </section>
+                    <nav class="botoes-contato">
+                        <a href="#">Trabalhe Conosco</a>
+                        <a href="#">Atendimento</a>
+                    </nav>
+                </article>
+            </section>
+        </section>
+
+    </main>
+
+    <!-- RODAPÉ -->
+    <footer>
+        <section class="conteudo-rodape">
+            <h2 class="logo-rodape">SmartCoffe ☕</h2>
+            <nav class="redes-sociais">
+                <a href="#" title="WhatsApp">📱</a>
+                <a href="#" title="Instagram">📷</a>
+                <a href="#" title="Facebook">📘</a>
+            </nav>
+        </section>
+    </footer>
+
 </body>
 </html>
