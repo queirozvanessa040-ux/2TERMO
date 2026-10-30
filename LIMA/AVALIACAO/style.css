@@ -1,0 +1,147 @@
+:root {
+    --fundo: #090A16;
+    --fundo-2: #101225;
+    --painel: #171A31;
+
+    --texto: #FFF7E6;
+    --texto-suave: #C7CADB;
+
+    --magenta: #FF3D81;
+    --ciano: #18D9FF;
+    --amarelo: #FFD84D;
+    --roxo: #6D4AFF;
+    --laranja: #FF7A33;
+
+    --borda:
+        rgba(255, 255, 255, 0.12);
+
+    --sombra:
+        0 28px 70px
+        rgba(0, 0, 0, 0.34);
+
+    --raio:
+        20px;
+}
+
+body {
+    margin: 0;
+    background-color: var(--fundo);
+    font-family: Arial, Helvetica, sans-serif;
+    color: var(--texto);
+}
+
+.titulo {
+    padding: 20px;
+    text-align: right;
+    margin: 30px 0;
+    border-radius: 0;
+}
+header {
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h2 + nav {
+    background-color: var(--texto);
+    margin: 0;
+    background-color: var(--fundo);
+}
+
+header a {
+    display: flex;
+    text-align: right;
+    padding-right: 20px;
+}
+
+nav {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+nav a {
+    color: var(--texto);
+    text-decoration: none;
+    margin-left: 0;
+    padding: 10px 14px;
+    border-radius: 5px;
+    text-align: right;
+}
+
+section {
+    background-color:var(--fundo-2);
+}
+
+.texto-imagem {
+    text-align: right;
+    border-radius: 20px;
+}
+button {
+  background: var(--magenta);
+  color: white;
+  transform: translateY(-3px);
+  border-style: none;
+}
+
+button:hover {
+    background-color: var(--magenta);
+    border: 1px solid var(--magenta);
+    border-top: 4px solid var(--magenta);
+    border-radius: 7px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+span {
+    color: var(--magenta);
+}
+
+footer span {
+    color: var(--magenta);
+}
+
+footer p{
+    text-align: center;
+}
+
+footer button {
+    text-align: right;
+    border-bottom: var();
+}
+
+main {
+    background-image: linear-gradient(var(--ciano), var(--roxo), var(--magenta));
+    color: var(--texto);
+}
+
+main h5 {
+    text-align: center;
+    color: var(--amarelo);
+}
+
+main h1{
+    text-align: center;
+}
+
+.sobre {
+    margin: 0;
+    background-color: var(--amarelo);
+    font-family: Arial, Helvetica, sans-serif;
+    color: var(--texto);
+}
+
+h4 {
+    margin-bottom: 14px;
+    color: var(--ciano);
+    font-size: 0.76rem;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+}
+footer p {
+    text-align: right;
+}
