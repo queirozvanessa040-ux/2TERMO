@@ -1,0 +1,73 @@
+-- Parte A — Básico Fundamentos
+
+-- 1. Crie vw_produtos_ativos .
+CREATE VIEW vw_produto_ativado AS SELECT id_produto, nome, preco 
+FROM produto 
+WHERE ativo = TRUE;
+
+SELECT * FROM vw_produto_ativado;
+
+-- 2. Consulte apenas produtos da view com preço maior que R$ 10,00.
+
+SELECT * FROM vw_produto_ativado
+WHERE preco >=10.00
+
+-- 3. Liste todas as views do banco.
+
+SHOW FULL TABLES WHERE TABLE_TYPE = 'VIEW';
+
+-- 4. Exiba a definição de vw_produtos_ativos .
+
+SHOW CREATE VIEW vw_produto_ativado;
+
+-- Parte B — Relacionamentos Intermediário
+
+-- Simples
+
+CREATE VIEW vw_cliente_desejado AS SELECT id_cliente, nome, cidade
+FROM cliente
+
+SELECT * FROM vw_cliente_desejado
+
+-- Completo
+
+CREATE VIEW vw_cliente_completo
+FROM
+
+-- 5. Crie vw_produtos_categorias usando INNER JOIN.
+
+CREATE VIEW vw_produtos_categoria AS 
+SELECT p.id_produto, p.nome
+
+-- 6. Crie vw_pedidos_clientes .
+
+CREATE VIEW vw_pedidos_clientes 
+
+-- 7. Consulte somente pedidos FINALIZADOS pela view.
+
+-- 8. Crie uma view com pedido, produto, quantidade, preço unitário e
+-- subtotal.
+
+-- Parte C — Relatórios Intermediário/
+-- Avançado
+
+-- 9. Crie vw_vendas_por_produto com SUM e GROUP BY.
+
+-- 10. Liste os produtos pelo maior faturamento.
+
+-- 11. Crie uma view que apresente todos os clientes e a quantidade de
+-- pedidos, inclusive zero.
+
+-- 12. Descubra, pela view anterior, clientes que nunca compraram.
+
+-- Parte D — Manutenção
+
+-- 13. Use CREATE OR REPLACE para acrescentar id_categoria em uma
+-- view.
+
+-- 14. Crie uma view simples e teste uma atualização permitida pelo SGBD.
+
+-- 15. Crie uma view de produtos ativos com WITH CHECK OPTION e
+-- analise seu efeito.
+
+-- 16. Remova uma view de teste com DROP VIEW IF EXISTS.
