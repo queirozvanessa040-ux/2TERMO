@@ -1,0 +1,132 @@
+:root {
+    --fundo: #cae0e7;
+    --cabecalho: #22225c;
+    --descricao: #85a6c8;
+    --atracoes: #0169a1;
+    --programa: #2f95a2;
+    --sobre: #828abf;
+    --letras: #ffffff;
+}
+
+body {
+    box-sizing: border-box;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--fundo);
+}
+
+.titulo-secao {
+    display: flex;
+    background-color: var(--cabecalho);
+    color: var(--letras);
+}
+
+.titulo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 32px;
+    width: 100%;
+}
+
+.navegacao ul {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 32px;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    font-size: 18px;
+}
+
+.navegacao a {
+    display: flex;
+    align-items: center;
+    color: var(--letras);
+    text-decoration: none;
+    padding: 6px 16px;
+    white-space: nowrap;
+}
+
+
+.descricao-tech {
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    background-color: var(--descricao);
+    padding: 25px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 20px;
+    border-radius: 3px;
+
+}
+
+.information {
+    text-align: center;
+    margin-right: 60px;
+    grid-column: 1 / -1;
+}
+
+
+
+figure {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    margin: 0;
+    border-radius: 3px;
+    background-color: var(--atracoes);
+}
+
+.galaria-atracao ul {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    list-style: none;
+    padding: 10px;
+}
+
+.grupado {
+    display: flex;
+    gap: 24px;
+    padding: 10px;
+    box-sizing: border-box;
+    align-items: stretch;
+}
+
+.galeria-programacao,
+.galeria-sobre {
+    flex: 1;
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.galeria-programacao {
+    background-color: var(--programa);
+}
+
+.galeria-sobre {
+    background-color: var(--sobre);
+}
+
+.central {
+    text-align: center;
+}
+
+footer {
+    background-color: var(--cabecalho);
+    color: var(--letras);
+}
+
+footer h4 {
+    text-align: center;
+}
+
+footer h3 {
+    text-align: center;
+}
