@@ -1,0 +1,162 @@
+USE smartcoffee_procedures_vanessa;
+
+-- AULA 13 - ATIVIDADE STORED PROCEDURES
+-- Aluno: Vanessa Queiroz da Silva
+-- Turma: 2DEVIS - B
+
+-- 1. listar_clientes_ativos()
+DROP PROCEDURE IF EXISTS LISTAR_CLIENTES;
+DELIMITER $$
+CREATE PROCEDURE LISTAR_CLIENTES()
+BEGIN
+    SELECT ID_CLIENTE, NOME, TELEFONE
+    FROM CLIENTE
+    WHERE ATIVO = TRUE
+    ORDER BY ATIVO;
+END 
+
+DELIMITER ;
+CALL LISTAR_CLIENTES();
+
+-- 2. buscar_produto_por_nome(IN p_busca VARCHAR(100))
+DROP PROCEDURE IF EXISTS BUSCAR_PRODUTO_POR_NOME;
+DELIMITER $$
+CREATE PROCEDURE buscar_produto_por_nome (
+    IN P_BUSCA VARCHAR(100)
+)
+BEGIN
+    SELECT ID_PRODUTO AS NOME
+    FROM PRODUTO
+    WHERE ID_CATEGORIA = P_ID_CATEGORIA
+    AND ATIVO = TRUE 
+    ORDER BY NOME;
+END $$
+
+DELIMITER ;
+
+-- 3. produtos_por_categoria(IN p_id_categoria INT)
+
+DELIMITER $$
+CREATE PROCEDURE produtos_por_categoria (
+    IN P_ID_CATEGORIA INT
+)
+BEGIN
+    SELECT ID_PRODUTO AS NOME
+    FROM PRODUTO 
+    WHERE ID_CATEGORIA = P_ID_CATEGORIA;
+END;
+
+DELIMITER ;
+
+-- 4. total_clientes(OUT p_total INT)
+
+DELIMITER $$
+CREATE PROCEDURE TOTAL_CLIENTES (
+    OUT P_TOTAL INT
+)
+BEGIN
+    SELECT ID_CLIENTE AS NOME
+    FROM CLIENTE 
+    WHERE ID_CLIENTE = P_TOTAL;
+END;
+
+DELIMITER ;
+
+-- 5. consultar_estoque(IN p_id_produto INT) usando variável local
+
+DELIMITER $$
+CREATE PROCEDURE CONSULTAR_ESTOQUE (
+    IN P_ID_PRODUTO INT
+)
+BEGIN
+    SELECT ID_PRODUTO AS NOME, QUANTIDADE
+    FROM PRODUTO
+    WHERE ID_PRODUTO = P_ID_PRODUTO;
+END;
+DELIMITER ;
+
+-- 6. classificar estoque: 0 SEM ESTOQUE / <=5 BAIXO / >5 NORMAL
+
+DELIMITER $$
+CREATE PROCEDURE CLASSIFICAR_ESTOQUE (
+    IN P_ID_PRODUTO INT
+)
+BEGIN
+    DECLARE V_QUANTIDADE INT;
+
+    SELECT QUANTIDADE
+    INTO V_QUANTIDADE
+    FROM ESTOQUE 
+    WHERE ID_PRODUTO = P_ID_PRODUTO;
+
+    IF V_QUANTIDADE = 0 THEN
+        SELECT 'SEM ESTOQUE' AS SITUAÇÃO;
+    ELSEIF V_QUANTIDADE <= 5 THEN
+        SELECT 'ESTOQUE BAIXO' AS SITUAÇÃO;
+    ELSE
+        SELECT 'ESTOQUE NORMAL' AS SITUAÇÃO;
+    END IF;
+END $$
+
+DELIMITER ;
+
+-- 7. cadastrar_cliente(...) com três parâmetros IN
+
+CREATE PROCEDURE CADASTRAR_CLIENTEs (
+    IN C_NOME VARCHAR(100),
+    IN C_EMAIL VARCHAR(120),
+    IN C_TELEFONE VARCHAR(20)
+)
+BEGIN
+    INSERT INTO cliente (nome, email, telefone)
+    VALUES (C_NOME, C_EMAIL, C_TELEFONE);
+
+    SELECT 'CLIENTE CADASTRADO COM SUCESSO!' AS MENSAGEM;
+END;
+
+CALL CADASTRAR_CLIENTES('ERMINIA CASTRO', 'ERMINIAC@EMAIL', '199987769');
+
+-- 8. alterar_preco(...) impedindo valor <= 0
+
+DELIMITER $$
+CREATE PROCEDURE ALTERAR_PRECO (
+    IN P_ID_PRODUTO INT
+)
+BEGIN 
+
+END;
+
+DELIMITER ;
+
+-- 9. criar_pedido(IN p_id_cliente INT, OUT p_id_pedido INT)
+
+DELIMITER $$
+CREATE PROCEDURE CRIAR_PEDIDO (
+    IN P_ID_CLIENTE INT,
+    OUT P_ID_PEDIDO INT
+)
+BEGIN
+    SELECT ID_CLIENTE AS NOME, TELEFONE, EMAIL
+    FROM CLIENTE 
+    WHERE ID_CLIENTE - P_ID_CLIENTE
+    ORDER BY NOME;
+END;
+
+DELIMITER ;
+
+-- 10. devolver ID com LAST_INSERT_ID()
+
+-- 11. adicionar_item_pedido(...) buscando o preço atual
+
+-- 12. Faça uma chamada inválida e explique o resultado.
+
+-- 13. Use SHOW CREATE PROCEDURE.
+
+-- 14. Remova uma procedure com DROP PROCEDURE IF EXISTS e recrie-a.
+
+-- DESAFIO FINAL:
+-- Crie uma procedure de negócio com:
+-- - pelo menos 2 parâmetros;
+-- - variável local;
+-- - IF;
+-- - pelo menos uma alteração no banco.
