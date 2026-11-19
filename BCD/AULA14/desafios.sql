@@ -123,7 +123,9 @@ CREATE PROCEDURE ALTERAR_PRECO (
     IN P_ID_PRODUTO INT
 )
 BEGIN 
-
+    SELECT PRECO 
+    FROM PRODUTO
+    WHERE ID_PRODUTO = P_ID_PRODUTO;
 END;
 
 DELIMITER ;
@@ -146,13 +148,23 @@ DELIMITER ;
 
 -- 10. devolver ID com LAST_INSERT_ID()
 
+DELIMITER $$
+CREATE PROCEDURE 
+
 -- 11. adicionar_item_pedido(...) buscando o preço atual
+
+DELIMITER $$
+CREATE PRODI
 
 -- 12. Faça uma chamada inválida e explique o resultado.
 
 -- 13. Use SHOW CREATE PROCEDURE.
 
+SHOW CREATE PROCEDURE CADASTRAR_CLIENTEs;
+
 -- 14. Remova uma procedure com DROP PROCEDURE IF EXISTS e recrie-a.
+
+DROP PROCEDURE IF EXISTS CADASTRAR_CLIENTEs;
 
 -- DESAFIO FINAL:
 -- Crie uma procedure de negócio com:
