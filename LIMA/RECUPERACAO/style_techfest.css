@@ -17,6 +17,9 @@ body {
 }
 
 .titulo-secao {
+    margin-top: 2px;
+    margin-left: 2px;
+    margin-right: 2px;
     display: flex;
     background-color: var(--cabecalho);
     color: var(--letras);
@@ -121,6 +124,9 @@ figure {
 footer {
     background-color: var(--cabecalho);
     color: var(--letras);
+    margin-top: 2px;
+    margin-left: 2px;
+    margin-right: 2px;
 }
 
 footer h4 {
